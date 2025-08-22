@@ -144,40 +144,5 @@ function App() {
     </AuthContext.Provider>
   );
 }
-              <Route path="/login" element={
-                user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <UnifiedLogin />
-              } />
-
-              {/* Protected Dashboard Routes */}
-              <Route path="/dashboard/admin" element={
-                <ProtectedRoute requiredRole="admin">
-                  <AdminDashboard />
-                </ProtectedRoute>
-              } />
-              <Route path="/dashboard/client" element={
-                <ProtectedRoute requiredRole="client">
-                  <ClientDashboard />
-                </ProtectedRoute>
-              } />
-              <Route path="/dashboard/writer" element={
-                <ProtectedRoute requiredRole="writer">
-                  <WriterDashboard />
-                </ProtectedRoute>
-              } />
-
-              {/* Redirect dashboard to appropriate role */}
-              <Route path="/dashboard" element={
-                user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <Navigate to="/login" replace />
-              } />
-            </Routes>
-          </div>
-        </Router>
-      </MessageProvider>
-    }
-    }
-    </AuthContext.Provider>
-  )
-  );
-}
 
 export default App;
