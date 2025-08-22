@@ -28,7 +28,7 @@ const getPayPalOptions = () => {
     "client-id": clientId,
     currency: "USD",
     intent: "capture",
-    "disable-funding": "credit,card",
+    "disable-funding": "card",
     "data-sdk-integration-source": "button-factory"
   };
 };
