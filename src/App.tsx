@@ -22,7 +22,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 // PayPal configuration with error handling
 const getPayPalOptions = () => {
   // Use a known working PayPal sandbox client ID
-  const clientId = "AYsqN5awNLw7OraDu4AXGEBE6Pp2iGEUn2_-L4QXnrXls2edDDNNf9jmrOmfN6_7kYjjYXKtA5v7nMUH";
+  const clientId = "sb";
   
   return {
     "client-id": clientId,
