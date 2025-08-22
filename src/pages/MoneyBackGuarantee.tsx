@@ -1,9 +1,16 @@
 import React from 'react';
-import { Shield, CheckCircle, Clock, DollarSign, AlertTriangle, Award, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Shield, CheckCircle, Clock, DollarSign, AlertTriangle, Award, ArrowRight } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 function MoneyBackGuarantee() {
   return (
+    <>
+      <SEOHead 
+        title="Money-Back Guarantee - Risk-Free Link Building | HighDALink"
+        description="100% risk-free guarantee on our elite DR90+ editorial backlinks. 30-day money-back guarantee, Google penalty protection, and delivery guarantee."
+        keywords="money back guarantee link building, risk free backlinks, guaranteed link building, penalty protection, refund policy"
+      />
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
@@ -210,6 +217,7 @@ function MoneyBackGuarantee() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 
