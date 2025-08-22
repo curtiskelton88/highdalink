@@ -217,8 +217,9 @@ function MoneyBackGuarantee() {
         </div>
       </div>
     </section>
-    </>
   );
 }
 
 export default MoneyBackGuarantee;
+  )
+}
