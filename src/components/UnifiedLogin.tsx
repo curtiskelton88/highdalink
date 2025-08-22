@@ -65,8 +65,14 @@ function UnifiedLogin() {
           {/* Role Selection */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-3">
-              Select Your Role
+              Select Your Role or Login with Existing Account
             </label>
+            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800">
+                <strong>New clients:</strong> If you just completed a payment, your account was automatically created. 
+                Select "Client" and use password: <code className="bg-blue-100 px-1 rounded">demo123</code>
+              </p>
+            </div>
             <div className="grid grid-cols-3 gap-2">
               <button
                 type="button"

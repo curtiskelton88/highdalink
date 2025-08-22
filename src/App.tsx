@@ -32,11 +32,13 @@ interface User {
   email: string;
   role: 'admin' | 'client' | 'writer';
   avatar?: string;
+  isNewUser?: boolean;
 }
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string, role: 'admin' | 'client' | 'writer') => Promise<boolean>;
+  createClientAccount: (userData: { name: string; email: string; company?: string }) => User;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -64,6 +66,18 @@ const predefinedUsers = [
 function App() {
   const [user, setUser] = useState<User | null>(null);
 
+  const createClientAccount = (userData: { name: string; email: string; company?: string }): User => {
+    const newUser: User = {
+      id: Math.random().toString(36).substr(2, 9),
+      name: userData.name,
+      email: userData.email,
+      role: 'client',
+      avatar: `https://images.unsplash.com/photo-1507003211169-0a1dd7bf7042?w=150&h=150&fit=crop&crop=face`,
+      isNewUser: true
+    };
+    setUser(newUser);
+    return newUser;
+  };
   const login = async (email: string, password: string, role: 'admin' | 'client' | 'writer'): Promise<boolean> => {
     if (password === 'demo123') {
       // Find the matching predefined user
@@ -91,6 +105,7 @@ function App() {
   const authValue: AuthContextType = {
     user,
     login,
+    createClientAccount,
     logout,
     isAuthenticated: !!user
   };

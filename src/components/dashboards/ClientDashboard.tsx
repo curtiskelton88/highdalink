@@ -131,6 +131,8 @@ function ClientDashboard() {
 }
 
 function DashboardTab() {
+  const { user } = useAuth();
+  const [showWelcomeModal, setShowWelcomeModal] = useState(user?.isNewUser || false);
   const [currentPackage] = useState({
     name: 'Authority Pro',
     price: '$1,100',
@@ -165,8 +167,82 @@ function DashboardTab() {
 
   return (
     <div>
+      {/* Welcome Modal for New Users */}
+      <Modal
+        isOpen={showWelcomeModal}
+        onClose={() => setShowWelcomeModal(false)}
+        title="Welcome to HighDALink!"
+        maxWidth="max-w-2xl"
+      >
+        <div className="p-6">
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="h-8 w-8 text-white" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Payment Successful!</h3>
+            <p className="text-gray-600">Your account has been created and your campaign is being set up.</p>
+          </div>
+          
+          <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-6 mb-6">
+            <h4 className="font-semibold text-gray-900 mb-3">What happens next?</h4>
+            <div className="space-y-2 text-sm text-gray-700">
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                <span>Our team will contact you within 24 hours</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                <span>We'll discuss your specific requirements and goals</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                <span>Elite writers will begin creating your content</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                <span>DR90+ editorial backlinks delivered within 7-14 days</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+            <div className="flex items-start">
+              <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                <span className="text-white text-xs font-bold">!</span>
+              </div>
+              <div>
+                <h5 className="font-medium text-yellow-800 mb-1">Important Login Information</h5>
+                <p className="text-sm text-yellow-700">
+                  Your account has been created with email: <strong>{user?.email}</strong><br/>
+                  Default password: <strong>demo123</strong><br/>
+                  <span className="text-xs">Please change your password in account settings.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex space-x-3">
+            <button
+              onClick={() => setShowWelcomeModal(false)}
+              className="flex-1 bg-gradient-to-r from-blue-600 to-green-500 text-white py-3 px-6 rounded-lg hover:from-blue-700 hover:to-green-600 transition-all font-semibold"
+            >
+              Explore Dashboard
+            </button>
+            <button
+              onClick={() => {
+                setShowWelcomeModal(false);
+                // Could navigate to messages or support
+              }}
+              className="flex-1 border border-gray-300 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-50 transition-all font-semibold"
+            >
+              Contact Support
+            </button>
+          </div>
+        </div>
+      </Modal>
+
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Welcome Back, John!</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Welcome Back, {user?.name?.split(' ')[0] || 'Client'}!</h1>
         <p className="text-gray-600 mt-2">Here's an overview of your link building campaigns</p>
       </div>
 

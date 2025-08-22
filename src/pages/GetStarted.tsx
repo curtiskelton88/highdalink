@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import PayPalButton from '../components/PayPalButton';
+import { useAuth } from '../App';
 import { trackFormSubmission, trackPackageSelection } from '../utils/analytics';
 
 function GetStarted() {
   const [showPayment, setShowPayment] = useState(false);
+  const { createClientAccount } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -64,7 +68,16 @@ function GetStarted() {
 
   const handlePaymentSuccess = (details: any) => {
     console.log('Payment successful:', details);
-    alert(`Payment successful! Transaction ID: ${details.id}\n\nThank you for purchasing ${formData.package}. We will contact you within 24 hours to begin your link building campaign.\n\nYour project details have been saved and our team will reach out to you at ${formData.email}.`);
+    
+    // Create client account automatically
+    const newUser = createClientAccount({
+      name: formData.name,
+      email: formData.email,
+      company: formData.company
+    });
+    
+    // Show success message
+    alert(`Payment successful! Transaction ID: ${details.id}\n\nWelcome to HighDALink! Your account has been created and you're being redirected to your client dashboard.\n\nYour project details have been saved and our team will contact you within 24 hours to begin your ${formData.package} campaign.`);
     
     // Reset form
     setFormData({
@@ -78,6 +91,9 @@ function GetStarted() {
       message: ''
     });
     setShowPayment(false);
+    
+    // Redirect to client dashboard
+    navigate('/dashboard/client');
   };
 
   const handlePaymentError = (error: any) => {
