@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import PayPalButton from '../components/PayPalButton';
 import { trackFormSubmission, trackPackageSelection } from '../utils/analytics';
 
 function GetStarted() {
+  const [showPayment, setShowPayment] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,6 +35,56 @@ function GetStarted() {
     alert('Thank you for your order! We will contact you within 24 hours.');
   };
 
+  const handleProceedToPayment = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formData.name && formData.email && formData.targetUrl && formData.keywords && formData.category) {
+      setShowPayment(true);
+    } else {
+      alert('Please fill in all required fields before proceeding to payment.');
+    }
+  };
+
+  const getPackageAmount = () => {
+    switch (formData.package) {
+      case 'Elite One': return '600';
+      case 'Authority Pro': return '1100';
+      case 'Agency Monthly': return '2000';
+      default: return '600';
+    }
+  };
+
+  const getPackageDescription = () => {
+    switch (formData.package) {
+      case 'Elite One': return '1 DR90+ backlink with 1500-word SEO article';
+      case 'Authority Pro': return '2 DR90+ backlinks with premium SEO articles and spam audit';
+      case 'Agency Monthly': return '4 DR90+ backlinks monthly with Slack support and reporting';
+      default: return '1 DR90+ backlink with 1500-word SEO article';
+    }
+  };
+
+  const handlePaymentSuccess = (details: any) => {
+    console.log('Payment successful:', details);
+    alert(`Payment successful! Transaction ID: ${details.id}\n\nThank you for purchasing ${formData.package}. We will contact you within 24 hours to begin your link building campaign.\n\nYour project details have been saved and our team will reach out to you at ${formData.email}.`);
+    
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      targetUrl: '',
+      keywords: '',
+      category: '',
+      package: 'Authority Pro',
+      message: ''
+    });
+    setShowPayment(false);
+  };
+
+  const handlePaymentError = (error: any) => {
+    console.error('Payment failed:', error);
+    alert('Payment failed. Please try again or contact our support team.');
+  };
+
   return (
     <>
       <SEOHead 
@@ -44,11 +96,16 @@ function GetStarted() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Get Started Today</h1>
-          <p className="text-xl text-gray-600">Fill out the form below and we'll contact you within 24 hours to discuss your link building strategy</p>
+          <p className="text-xl text-gray-600">
+            {showPayment ? 'Complete your payment to start your link building campaign' : 'Fill out the form below and proceed to payment or request a quote'}
+          </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Form Section */}
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Project Details</h2>
+            <form onSubmit={showPayment ? handleSubmit : handleProceedToPayment} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -195,20 +252,119 @@ function GetStarted() {
               ></textarea>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="text-sm text-blue-800">
-                <strong>Next Steps:</strong> After submitting this form, our team will review your requirements and contact you within 24 hours to discuss your campaign strategy and answer any questions.
-              </p>
+              {!showPayment && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <p className="text-sm text-blue-800">
+                    <strong>Next Steps:</strong> Complete the form and choose to either pay now to start immediately, or request a quote for custom requirements.
+                  </p>
+                </div>
+              )}
+
+              <div className="space-y-3">
+                {!showPayment ? (
+                  <>
+                    <button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white py-4 px-8 rounded-lg hover:from-blue-700 hover:to-orange-600 transition-all transform hover:scale-105 font-semibold text-lg flex items-center justify-center"
+                    >
+                      Proceed to Payment
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleSubmit}
+                      className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold flex items-center justify-center"
+                    >
+                      Request Quote Instead
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setShowPayment(false)}
+                    className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold"
+                  >
+                    ← Back to Edit Details
+                  </button>
+                )}
+              </div>
+            </form>
+          </div>
+
+          {/* Payment Section */}
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+              {showPayment ? 'Complete Payment' : 'Package Summary'}
+            </h2>
+            
+            {/* Package Summary */}
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 mb-6">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{formData.package}</h3>
+                  <p className="text-gray-600 text-sm">{getPackageDescription()}</p>
+                </div>
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-blue-600">${getPackageAmount()}</div>
+                  {formData.package === 'Agency Monthly' && (
+                    <div className="text-sm text-gray-600">/month</div>
+                  )}
+                </div>
+              </div>
+              
+              {formData.targetUrl && (
+                <div className="border-t border-gray-200 pt-4 mt-4">
+                  <div className="text-sm text-gray-600 mb-2">Project Details:</div>
+                  <div className="space-y-1 text-sm">
+                    <div><strong>Target URL:</strong> {formData.targetUrl}</div>
+                    <div><strong>Keywords:</strong> {formData.keywords}</div>
+                    <div><strong>Industry:</strong> {formData.category}</div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white py-4 px-8 rounded-lg hover:from-blue-700 hover:to-orange-600 transition-all transform hover:scale-105 font-semibold text-lg flex items-center justify-center"
-            >
-              Submit Your Order
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </button>
-          </form>
+            {/* Payment Section */}
+            {showPayment ? (
+              <div>
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-900 mb-2">Pay with PayPal</h4>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Secure payment processing. You'll receive a confirmation email and our team will contact you within 24 hours.
+                  </p>
+                </div>
+                
+                <PayPalButton
+                  amount={getPackageAmount()}
+                  packageName={formData.package}
+                  description={getPackageDescription()}
+                  onSuccess={handlePaymentSuccess}
+                  onError={handlePaymentError}
+                />
+                
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-gray-500">
+                    Secure payment powered by PayPal. Your information is protected.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center">
+                <p className="text-gray-600 mb-4">
+                  Complete the form on the left to proceed with payment or request a custom quote.
+                </p>
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center justify-center mb-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                    <span className="text-sm font-semibold text-green-800">30-Day Money-Back Guarantee</span>
+                  </div>
+                  <p className="text-xs text-green-700">
+                    Full refund if we don't deliver as promised
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>

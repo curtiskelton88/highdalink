@@ -2,8 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Star } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import PayPalButton from '../components/PayPalButton';
 
 function Pricing() {
+  const handlePaymentSuccess = (details: any, packageName: string) => {
+    console.log('Payment successful for:', packageName, details);
+    alert(`Payment successful! Transaction ID: ${details.id}\n\nThank you for purchasing ${packageName}. We will contact you within 24 hours to begin your link building campaign.`);
+  };
+
+  const handlePaymentError = (error: any) => {
+    console.error('Payment failed:', error);
+    alert('Payment failed. Please try again or contact our support team.');
+  };
+
   return (
     <>
       <SEOHead 
@@ -36,12 +47,21 @@ function Pricing() {
                 <span className="text-gray-700">1500-word SEO article by an elite writer</span>
               </li>
             </ul>
-            <Link 
-              to="/get-started"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105 font-semibold block text-center shadow-lg"
-            >
-              Get Started
-            </Link>
+            <div className="space-y-3">
+              <PayPalButton
+                amount="600"
+                packageName="Elite One"
+                description="1 DR90+ backlink with 1500-word SEO article"
+                onSuccess={(details) => handlePaymentSuccess(details, 'Elite One')}
+                onError={handlePaymentError}
+              />
+              <Link 
+                to="/get-started"
+                className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"
+              >
+                Or Get Quote First
+              </Link>
+            </div>
           </div>
 
           {/* Authority Pro */}
@@ -71,12 +91,21 @@ function Pricing() {
                 <span className="text-gray-700">Spam audit report</span>
               </li>
             </ul>
-            <Link 
-              to="/get-started"
-              className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all transform hover:scale-105 font-semibold block text-center shadow-lg"
-            >
-              Get Started
-            </Link>
+            <div className="space-y-3">
+              <PayPalButton
+                amount="1100"
+                packageName="Authority Pro"
+                description="2 DR90+ backlinks with premium SEO articles and spam audit"
+                onSuccess={(details) => handlePaymentSuccess(details, 'Authority Pro')}
+                onError={handlePaymentError}
+              />
+              <Link 
+                to="/get-started"
+                className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"
+              >
+                Or Get Quote First
+              </Link>
+            </div>
           </div>
 
           {/* Agency Monthly */}
@@ -104,12 +133,21 @@ function Pricing() {
                 <span>Monthly performance reporting</span>
               </li>
             </ul>
-            <Link 
-              to="/get-started"
-              className="w-full bg-white text-purple-900 py-3 rounded-lg hover:bg-purple-50 transition-all transform hover:scale-105 font-semibold block text-center shadow-lg"
-            >
-              Start Monthly Plan
-            </Link>
+            <div className="space-y-3">
+              <PayPalButton
+                amount="2000"
+                packageName="Agency Monthly"
+                description="4 DR90+ backlinks monthly with Slack support and reporting"
+                onSuccess={(details) => handlePaymentSuccess(details, 'Agency Monthly')}
+                onError={handlePaymentError}
+              />
+              <Link 
+                to="/get-started"
+                className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"
+              >
+                Or Get Quote First
+              </Link>
+            </div>
           </div>
         </div>
 

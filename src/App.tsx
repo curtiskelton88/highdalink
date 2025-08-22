@@ -1,5 +1,6 @@
 import React, { useState, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { MessageProvider } from './contexts/MessageContext';
 import SEOHead from './components/SEOHead';
 import Header from './components/Header';
@@ -90,67 +91,7 @@ function App() {
   return (
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
-        <Router>
-          <SEOHead />
-          <div className="min-h-screen bg-white">
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={
-                <>
-                  <Header />
-                  <Home />
-                  <Footer />
-                </>
-              } />
-              <Route path="/why-choose-us" element={
-                <>
-                  <Header />
-                  <WhyChooseUs />
-                  <Footer />
-                </>
-              } />
-              <Route path="/pricing" element={
-                <>
-                  <Header />
-                  <Pricing />
-                  <Footer />
-                </>
-              } />
-              <Route path="/get-started" element={
-                <>
-                  <Header />
-                  <GetStarted />
-                  <Footer />
-                </>
-              } />
-              <Route path="/faq" element={
-                <>
-                  <Header />
-                  <FAQ />
-                  <Footer />
-                </>
-              } />
-              <Route path="/contact" element={
-                <>
-                  <Header />
-                  <Contact />
-                  <Footer />
-                </>
-              } />
-              <Route path="/guarantee" element={
-                <>
-                  <Header />
-                  <MoneyBackGuarantee />
-                  <Footer />
-                </>
-              } />
-              <Route path="/roi-calculator" element={
-                <>
-                  <Header />
-                  <ROICalculator />
-                  <Footer />
-                </>
-              } />
+        <PayPalScriptProvider options={{
 
               {/* Authentication Routes */}
               <Route path="/login" element={
