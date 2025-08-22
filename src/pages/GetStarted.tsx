@@ -101,7 +101,6 @@ function GetStarted() {
                 >
                   <option value="Elite One">💎 Elite One - $600</option>
                   <option value="Authority Pro">🚀 Authority Pro - $1,100</option>
-                  <option value="Enterprise Max">🏆 Enterprise Max - $1,500</option>
                   <option value="Agency Monthly">⚡ Agency Monthly - $2,000/month</option>
                 </select>
               </div>
