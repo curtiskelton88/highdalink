@@ -221,3 +221,5 @@ function MoneyBackGuarantee() {
 }
 
 export default MoneyBackGuarantee;
+  )
+}
