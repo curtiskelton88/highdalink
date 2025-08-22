@@ -84,7 +84,7 @@ function Footer() {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-4">
-          <p>&copy; {currentYear} HighDALink - Premium Link Building Services | DR90+ Editorial Backlinks | SEO Content Marketing | All rights reserved.</p>
+          <p>&copy; {currentYear} HighDALink - Premium Link Building Services | DR90+ Editorial Backlinks | DA90+ Editorial Backlinks | All rights reserved.</p>
         </div>
       </div>
     </footer>
