@@ -126,6 +126,7 @@ function App() {
     }
     }
     </AuthContext.Provider>
+  )
   );
 }
 
