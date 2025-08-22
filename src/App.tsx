@@ -92,7 +92,7 @@ function App() {
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
         <PayPalScriptProvider options={{
-
+          "client-id": "AXaWaOGDAGCHJnC_mICh4dNlwhTQP8lB4hTlXLEQeWifdX8jUFCW_akhjXIjS8QcSl6MM6QR-wKCrCSm",
               {/* Authentication Routes */}
               <Route path="/login" element={
                 user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <UnifiedLogin />
