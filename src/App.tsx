@@ -95,49 +95,51 @@ function App() {
           "client-id": "AXaWaOGDAGCHJnC_mICh4dNlwhTQP8lB4hTlXLEQeWifdX8jUFCW_akhjXIjS8QcSl6MM6QR-wKCrCSm"
         }}>
           <Router>
-            <SEOHead />
-            <div className="min-h-screen bg-gray-50 flex flex-col">
-              <Header />
-              <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<Home />} />
-                <Route path="/why-choose-us" element={<WhyChooseUs />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/get-started" element={<GetStarted />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/money-back-guarantee" element={<MoneyBackGuarantee />} />
-                <Route path="/roi-calculator" element={<ROICalculator />} />
+            <>
+              <SEOHead />
+              <div className="min-h-screen bg-gray-50 flex flex-col">
+                <Header />
+                <Routes>
+                  {/* Public Routes */}
+                  <Route path="/" element={<Home />} />
+                  <Route path="/why-choose-us" element={<WhyChooseUs />} />
+                  <Route path="/pricing" element={<Pricing />} />
+                  <Route path="/get-started" element={<GetStarted />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/money-back-guarantee" element={<MoneyBackGuarantee />} />
+                  <Route path="/roi-calculator" element={<ROICalculator />} />
 
-                {/* Authentication Routes */}
-                <Route path="/login" element={
-                  user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <UnifiedLogin />
-                } />
+                  {/* Authentication Routes */}
+                  <Route path="/login" element={
+                    user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <UnifiedLogin />
+                  } />
 
-                {/* Protected Dashboard Routes */}
-                <Route path="/dashboard/admin" element={
-                  <ProtectedRoute requiredRole="admin">
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                } />
-                <Route path="/dashboard/client" element={
-                  <ProtectedRoute requiredRole="client">
-                    <ClientDashboard />
-                  </ProtectedRoute>
-                } />
-                <Route path="/dashboard/writer" element={
-                  <ProtectedRoute requiredRole="writer">
-                    <WriterDashboard />
-                  </ProtectedRoute>
-                } />
+                  {/* Protected Dashboard Routes */}
+                  <Route path="/dashboard/admin" element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/dashboard/client" element={
+                    <ProtectedRoute requiredRole="client">
+                      <ClientDashboard />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/dashboard/writer" element={
+                    <ProtectedRoute requiredRole="writer">
+                      <WriterDashboard />
+                    </ProtectedRoute>
+                  } />
 
-                {/* Redirect dashboard to appropriate role */}
-                <Route path="/dashboard" element={
-                  user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <Navigate to="/login" replace />
-                } />
-              </Routes>
-              <Footer />
-            </div>
+                  {/* Redirect dashboard to appropriate role */}
+                  <Route path="/dashboard" element={
+                    user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <Navigate to="/login" replace />
+                  } />
+                </Routes>
+                <Footer />
+              </div>
+            </>
           </Router>
         </PayPalScriptProvider>
       </MessageProvider>
