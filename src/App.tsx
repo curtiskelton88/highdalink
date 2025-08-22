@@ -1,7 +1,6 @@
 import React, { useState, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { MessageProvider } from './contexts/MessageContext';
-import GoogleAnalytics from './components/GoogleAnalytics';
 import SEOHead from './components/SEOHead';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -91,7 +90,6 @@ function App() {
   return (
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
-        <GoogleAnalytics measurementId="G-T4EZW07BLS" />
         <Router>
           <SEOHead />
           <div className="min-h-screen bg-white">
