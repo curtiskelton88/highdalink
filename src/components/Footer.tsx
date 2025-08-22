@@ -38,7 +38,7 @@ function Footer() {
               <span className="text-2xl font-bold">HighDALink</span>
             </div>
             <p className="text-gray-400 mb-4">
-              High Authority. Real Results. We help growth-focused brands dominate search rankings with premium editorial backlinks.
+              Premium DR90+ editorial backlinks and high-authority link building services. We help businesses dominate search rankings with white-hat SEO strategies, quality content creation, and organic link acquisition from top-tier publications.
             </p>
             <div className="flex space-x-4 mb-6">
               <Star className="h-5 w-5 text-yellow-400" />
@@ -84,7 +84,7 @@ function Footer() {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-4">
-          <p>&copy; {currentYear} HighDALink. All rights reserved. Top 1% of link building providers worldwide.</p>
+          <p>&copy; {currentYear} HighDALink - Premium Link Building Services | DR90+ Editorial Backlinks | SEO Content Marketing | All rights reserved.</p>
         </div>
       </div>
     </footer>
