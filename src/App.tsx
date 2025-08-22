@@ -92,7 +92,7 @@ function App() {
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
         <PayPalScriptProvider options={{
-          "client-id": "AXaWaOGDAGCHJnC_mICh4dNlwhTQP8lB4hTlXLEQeWifdX8jUFCW_akhjXIjS8QcSl6MM6QR-wKCrCSm"
+          "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID || "AXaWaOGDAGCHJnC_mICh4dNlwhTQP8lB4hTlXLEQeWifdX8jUFCW_akhjXIjS8QcSl6MM6QR-wKCrCSm"
         }}>
           <Router>
             <>
