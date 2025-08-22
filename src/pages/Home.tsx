@@ -56,9 +56,9 @@ function Home() {
   return (
     <>
       <SEOHead 
-        title="HighDALink - Premium DR90+ Editorial Backlinks | High Authority Link Building"
-        description="Get premium DR90+/DA90+ editorial backlinks from top publications. Elite writers, organic placement, guaranteed results. Trusted by Fortune 500 companies worldwide."
-        keywords="DR90+ backlinks, DA90+ editorial backlinks, high authority link building, premium SEO services, editorial link building, organic backlinks, white hat SEO, link building services"
+        title="HighDALink - Elite DR90+ DA90+ Editorial Backlinks | Top 1% Link Building Services"
+        description="Top 1% provider of elite DR90+ DA90+ editorial backlinks. Premium high authority link building services from 90+ domain rating sites. White hat SEO, organic backlinks, Fortune 500 trusted."
+        keywords="elite backlink building services, DR90+ editorial backlinks, DA90+ editorial backlinks, top 1% link building provider, high authority link building, premium link building services, 90+ domain rating backlinks, 90+ domain authority backlinks, white hat link building, organic editorial backlinks, premium SEO services, elite SEO services, professional link building, enterprise link building, Fortune 500 link building, premium editorial links, high DR backlinks, high DA backlinks, quality link building services, expert link building, advanced SEO link building, premium domain authority links, elite editorial placements, top quality backlinks, professional SEO services, enterprise SEO solutions"
       />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">

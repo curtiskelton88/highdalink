@@ -31,9 +31,9 @@ function GetStarted() {
   return (
     <>
       <SEOHead 
-        title="Get Started - Order DR90+ Editorial Backlinks | HighDALink"
-        description="Start your link building campaign today. Fill out our form to order premium DR90+ editorial backlinks. Elite writers, guaranteed results, 30-day money-back guarantee."
-        keywords="order backlinks, get started link building, DR90+ backlinks order, premium link building service, editorial backlinks campaign"
+        title="Get Started - Order Elite DR90+ DA90+ Editorial Backlinks | Top 1% Provider"
+        description="Start your elite link building campaign today. Order premium DR90+ DA90+ editorial backlinks from top 1% provider. Elite writers, guaranteed results, 30-day money-back guarantee."
+        keywords="order elite backlinks, get started link building, DR90+ editorial backlinks order, DA90+ editorial backlinks order, elite backlink building services, premium link building service order, top 1% link building provider, high authority backlinks order, 90+ domain rating backlinks order, 90+ domain authority backlinks order, professional link building campaign, enterprise link building order, premium SEO services order, quality link building services order"
       />
     <section className="py-20 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
