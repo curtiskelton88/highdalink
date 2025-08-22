@@ -48,13 +48,15 @@ function Pricing() {
               </li>
             </ul>
             <div className="space-y-3">
-              <PayPalButton
-                amount="600"
-                packageName="Elite One"
-                description="1 DR90+ backlink with 1500-word SEO article"
-                onSuccess={(details) => handlePaymentSuccess(details, 'Elite One')}
-                onError={handlePaymentError}
-              />
+              <div className="min-h-[120px]">
+                <PayPalButton
+                  amount="600"
+                  packageName="Elite One"
+                  description="1 DR90+ backlink with 1500-word SEO article"
+                  onSuccess={(details) => handlePaymentSuccess(details, 'Elite One')}
+                  onError={handlePaymentError}
+                />
+              </div>
               <Link 
                 to="/get-started"
                 className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"
@@ -92,13 +94,15 @@ function Pricing() {
               </li>
             </ul>
             <div className="space-y-3">
-              <PayPalButton
-                amount="1100"
-                packageName="Authority Pro"
-                description="2 DR90+ backlinks with premium SEO articles and spam audit"
-                onSuccess={(details) => handlePaymentSuccess(details, 'Authority Pro')}
-                onError={handlePaymentError}
-              />
+              <div className="min-h-[120px]">
+                <PayPalButton
+                  amount="1100"
+                  packageName="Authority Pro"
+                  description="2 DR90+ backlinks with premium SEO articles and spam audit"
+                  onSuccess={(details) => handlePaymentSuccess(details, 'Authority Pro')}
+                  onError={handlePaymentError}
+                />
+              </div>
               <Link 
                 to="/get-started"
                 className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"
@@ -134,13 +138,15 @@ function Pricing() {
               </li>
             </ul>
             <div className="space-y-3">
-              <PayPalButton
-                amount="2000"
-                packageName="Agency Monthly"
-                description="4 DR90+ backlinks monthly with Slack support and reporting"
-                onSuccess={(details) => handlePaymentSuccess(details, 'Agency Monthly')}
-                onError={handlePaymentError}
-              />
+              <div className="min-h-[120px]">
+                <PayPalButton
+                  amount="2000"
+                  packageName="Agency Monthly"
+                  description="4 DR90+ backlinks monthly with Slack support and reporting"
+                  onSuccess={(details) => handlePaymentSuccess(details, 'Agency Monthly')}
+                  onError={handlePaymentError}
+                />
+              </div>
               <Link 
                 to="/get-started"
                 className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"

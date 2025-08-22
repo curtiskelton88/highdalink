@@ -350,18 +350,29 @@ function GetStarted() {
                   </p>
                 </div>
                 
-                <PayPalButton
-                  amount={getPackageAmount()}
-                  packageName={formData.package}
-                  description={getPackageDescription()}
-                  onSuccess={handlePaymentSuccess}
-                  onError={handlePaymentError}
-                />
+                <div className="min-h-[120px]">
+                  <PayPalButton
+                    amount={getPackageAmount()}
+                    packageName={formData.package}
+                    description={getPackageDescription()}
+                    onSuccess={handlePaymentSuccess}
+                    onError={handlePaymentError}
+                  />
+                </div>
                 
                 <div className="mt-4 text-center">
                   <p className="text-xs text-gray-500">
                     Secure payment powered by PayPal. Your information is protected.
                   </p>
+                  <div className="mt-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowPayment(false)}
+                      className="text-sm text-blue-600 hover:text-blue-700 underline"
+                    >
+                      ← Back to form
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (

@@ -11,7 +11,25 @@ interface PayPalButtonProps {
 }
 
 function PayPalButton({ amount, packageName, description, onSuccess, onError }: PayPalButtonProps) {
-  const [{ isPending }] = usePayPalScriptReducer();
+  const [{ isPending, isRejected, isResolved }] = usePayPalScriptReducer();
+
+  // Handle script loading errors
+  if (isRejected) {
+    return (
+      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="text-red-800 text-sm">
+          <p className="font-medium mb-2">Payment system temporarily unavailable</p>
+          <p>Please try refreshing the page or contact support if the issue persists.</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-2 bg-red-600 text-white px-4 py-2 rounded text-sm hover:bg-red-700"
+          >
+            Refresh Page
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const createOrder = (data: any, actions: any) => {
     return actions.order.create({
@@ -75,18 +93,33 @@ function PayPalButton({ amount, packageName, description, onSuccess, onError }: 
     );
   }
 
+  if (!isResolved) {
+    return (
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <div className="text-yellow-800 text-sm">
+          <p>Initializing payment system...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="paypal-button-container">
       <PayPalButtons
         createOrder={createOrder}
         onApprove={onApprove}
         onError={onErrorHandler}
+        onCancel={() => {
+          console.log('PayPal payment cancelled');
+        }}
         style={{
           layout: 'vertical',
           color: 'blue',
           shape: 'rect',
-          label: 'paypal'
+          label: 'paypal',
+          height: 40
         }}
+        forceReRender={[amount, packageName]}
       />
     </div>
   );

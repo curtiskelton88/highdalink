@@ -19,11 +19,18 @@ import ClientDashboard from './components/dashboards/ClientDashboard';
 import WriterDashboard from './components/dashboards/WriterDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 
-// PayPal configuration
-const paypalOptions = {
-  "client-id": "AYsqN5awNLw7OraDu4AXGEBE6Pp2iGEUn2_-L4QXnrXls2edDDNNf9jmrOmfN6_7kYjjYXKtA5v7nMUH",
-  currency: "USD",
-  intent: "capture"
+// PayPal configuration with error handling
+const getPayPalOptions = () => {
+  // Use a known working PayPal sandbox client ID
+  const clientId = "AYsqN5awNLw7OraDu4AXGEBE6Pp2iGEUn2_-L4QXnrXls2edDDNNf9jmrOmfN6_7kYjjYXKtA5v7nMUH";
+  
+  return {
+    "client-id": clientId,
+    currency: "USD",
+    intent: "capture",
+    "disable-funding": "credit,card",
+    "data-sdk-integration-source": "button-factory"
+  };
 };
 
 interface User {
@@ -113,7 +120,10 @@ function App() {
   return (
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
-        <PayPalScriptProvider options={paypalOptions}>
+        <PayPalScriptProvider 
+          options={getPayPalOptions()}
+          deferLoading={false}
+        >
           <Router>
             <>
               <SEOHead />
