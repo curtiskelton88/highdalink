@@ -70,7 +70,7 @@ function UnifiedLogin() {
             <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-800">
                 <strong>New clients:</strong> If you just completed a payment, your account was automatically created. 
-                Select "Client" and use password: <code className="bg-blue-100 px-1 rounded">demo123</code>
+                Select "Client\" and use password: <code className="bg-blue-100 px-1 rounded">demo123</code>
               </p>
             </div>
             <div className="grid grid-cols-3 gap-2">
