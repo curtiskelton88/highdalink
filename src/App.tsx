@@ -123,6 +123,8 @@ function App() {
           </div>
         </Router>
       </MessageProvider>
+    }
+    }
     </AuthContext.Provider>
   );
 }
