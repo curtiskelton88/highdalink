@@ -91,7 +91,7 @@ function App() {
   return (
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
-        <GoogleAnalytics measurementId="GA_MEASUREMENT_ID" />
+        <GoogleAnalytics measurementId="G-T4EZW07BLS" />
         <Router>
           <SEOHead />
           <div className="min-h-screen bg-white">
