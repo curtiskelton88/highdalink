@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" fill="#2563eb"/>
+  
+  <!-- Link icon -->
+  <path d="M12 14.5L14.5 12C15.3284 11.1716 16.6716 11.1716 17.5 12L20 14.5C20.8284 15.3284 20.8284 16.6716 20 17.5L17.5 20C16.6716 20.8284 15.3284 20.8284 14.5 20L12 17.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 17.5L17.5 20C16.6716 20.8284 15.3284 20.8284 14.5 20L12 17.5C11.1716 16.6716 11.1716 15.3284 12 14.5L14.5 12C15.3284 11.1716 16.6716 11.1716 17.5 12L20 14.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Letter H -->
+  <text x="16" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">H</text>
+</svg>
