@@ -83,8 +83,7 @@ function Footer() {
           </div>
         </div>
         
-        <div className="<div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-4">
-">
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-4">
           <p>&copy; {currentYear} HighDALink. All rights reserved. Top 1% of link building providers worldwide.</p>
         </div>
       </div>
