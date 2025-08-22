@@ -2,10 +2,17 @@
   <!-- Background circle -->
   <circle cx="16" cy="16" r="16" fill="#2563eb"/>
   
-  <!-- Link icon -->
-  <path d="M12 14.5L14.5 12C15.3284 11.1716 16.6716 11.1716 17.5 12L20 14.5C20.8284 15.3284 20.8284 16.6716 20 17.5L17.5 20C16.6716 20.8284 15.3284 20.8284 14.5 20L12 17.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M20 17.5L17.5 20C16.6716 20.8284 15.3284 20.8284 14.5 20L12 17.5C11.1716 16.6716 11.1716 15.3284 12 14.5L14.5 12C15.3284 11.1716 16.6716 11.1716 17.5 12L20 14.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  
-  <!-- Letter H -->
-  <text x="16" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="white">H</text>
+  <!-- Link icon - larger and more visible -->
+  <g transform="translate(8, 8)">
+    <!-- First link -->
+    <rect x="2" y="6" width="6" height="4" rx="2" fill="white" stroke="none"/>
+    <!-- Second link -->
+    <rect x="8" y="6" width="6" height="4" rx="2" fill="white" stroke="none"/>
+    <!-- Connection -->
+    <rect x="6" y="7" width="2" height="2" fill="white"/>
+    
+    <!-- Highlight dots for premium feel -->
+    <circle cx="5" cy="8" r="0.8" fill="#60a5fa"/>
+    <circle cx="11" cy="8" r="0.8" fill="#f97316"/>
+  </g>
 </svg>
