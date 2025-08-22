@@ -20,7 +20,7 @@ function Home() {
                 High Authority. <span className="text-orange-400">Real Results.</span>
               </h1>
               <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                We help growth-focused brands and agencies dominate search rankings with DR90+/DA90+ editorial backlinks and SEO-optimized content. Trusted by global brands, powered by elite writers.
+                We help growth-focused brands and agencies dominate search rankings with DR90+ editorial backlinks and premium SEO-optimized content. Our DA90+ editorial backlinks are trusted by global brands worldwide, delivering guaranteed results that transform your search presence and drive sustainable organic growth.
               </p>
               
               {/* Guarantees in Hero */}
@@ -90,8 +90,20 @@ function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works - Easy Steps</h2>
-            <p className="text-xl text-gray-600">Get premium backlinks in 4 simple steps</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">How Our DR90+ Editorial Backlinks Work</h2>
+            <p className="text-xl text-gray-600 mb-6">Get premium DA90+ editorial backlinks in 4 simple steps with transparent pricing</p>
+            <div className="max-w-4xl mx-auto text-gray-600 leading-relaxed">
+              <p className="mb-4">
+                Our proven link building process has helped thousands of websites achieve top search rankings through high-authority editorial placements. 
+                Unlike traditional link building services, we focus exclusively on DR90+ editorial backlinks that provide lasting SEO value and 
+                comply with Google's quality guidelines.
+              </p>
+              <p>
+                Each DA90+ editorial backlink is secured through genuine relationships with verified writers and editors at premium publications. 
+                This approach ensures your links remain permanent, valuable, and completely safe from Google penalties while delivering 
+                measurable improvements to your domain authority and search rankings.
+              </p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -104,7 +116,7 @@ function Home() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Choose Your Package</h3>
               <p className="text-gray-600 text-center leading-relaxed">
-                Select from our Elite One, Authority Pro, Enterprise Max, or Agency Monthly packages based on your needs.
+                Select from our Elite One, Authority Pro, or Agency Monthly packages with transparent pricing designed for every budget and goal.
               </p>
             </div>
 
@@ -130,7 +142,7 @@ function Home() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Elite Writers Work</h3>
               <p className="text-gray-600 text-center leading-relaxed">
-                Our vetted US & UK native writers create premium content and secure placements.
+                Our vetted US & UK native writers create premium content and secure DR90+ editorial backlinks through established editorial relationships.
               </p>
             </div>
 
@@ -143,15 +155,42 @@ function Home() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Receive Live Links</h3>
               <p className="text-gray-600 text-center leading-relaxed">
-                Get your 90+ DA/DR backlinks delivered within 7-14 days with full reporting.
+                Get your DA90+ editorial backlinks delivered within 7-14 days with comprehensive reporting and guaranteed results.
               </p>
             </div>
           </div>
 
           <div className="text-center mt-16">
             <div className="bg-gradient-to-r from-blue-50 to-orange-50 rounded-2xl p-8 mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Start Building Authority?</h3>
-              <p className="text-lg text-gray-600 mb-6">Join hundreds of brands that trust us with their link building campaigns</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Our DR90+ Editorial Backlinks?</h2>
+              <p className="text-lg text-gray-600 mb-6">
+                Join hundreds of brands that trust us with their link building campaigns. Our transparent pricing and guaranteed results 
+                make us the preferred choice for businesses serious about SEO success.
+              </p>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 text-left">
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Trusted by Global Brands</h3>
+                  <p className="text-gray-600 text-sm">
+                    Fortune 500 companies and leading agencies choose our DA90+ editorial backlinks for their proven track record 
+                    of delivering sustainable SEO results and improving search rankings.
+                  </p>
+                </div>
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Guaranteed Results</h3>
+                  <p className="text-gray-600 text-sm">
+                    Every DR90+ editorial backlink comes with our 30-day money-back guarantee and full Google penalty protection. 
+                    We stand behind our work with measurable results you can trust.
+                  </p>
+                </div>
+                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Transparent Pricing</h3>
+                  <p className="text-gray-600 text-sm">
+                    No hidden fees or surprise costs. Our transparent pricing structure ensures you know exactly what you're getting 
+                    with each DA90+ editorial backlink package we deliver.
+                  </p>
+                </div>
+              </div>
               
               {/* Additional Guarantees */}
               <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -181,12 +220,37 @@ function Home() {
                 <ChevronRight className="ml-2 h-6 w-6" />
               </Link>
               <Link 
-                to="/roi-calculator"
+                to="/pricing"
                 className="border-2 border-gray-300 text-gray-700 px-10 py-4 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all font-semibold inline-flex items-center justify-center text-lg"
               >
-                <Calculator className="h-5 w-5 mr-2" />
-                Calculate Your ROI
+                View Transparent Pricing
               </Link>
+            </div>
+            
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 mb-4">
+                Learn more about our approach and see why we're different:
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 text-sm">
+                <Link 
+                  to="/why-choose-us" 
+                  className="text-blue-600 hover:text-blue-700 font-medium underline decoration-2 underline-offset-2"
+                >
+                  Why Choose Our DR90+ Editorial Backlinks
+                </Link>
+                <Link 
+                  to="/guarantee" 
+                  className="text-green-600 hover:text-green-700 font-medium underline decoration-2 underline-offset-2"
+                >
+                  Our Guaranteed Results Promise
+                </Link>
+                <Link 
+                  to="/roi-calculator" 
+                  className="text-purple-600 hover:text-purple-700 font-medium underline decoration-2 underline-offset-2"
+                >
+                  Calculate Your ROI
+                </Link>
+              </div>
             </div>
           </div>
         </div>
