@@ -7,8 +7,8 @@ function WhyChooseUs() {
   return (
     <>
       <SEOHead 
-        title="Why Choose HighDALink - Elite DR90+ DA90+ Editorial Backlinks | Top 1% Link Building Provider"
-        description="Top 1% elite backlink building services provider. Premium DR90+ DA90+ editorial backlinks from 90+ domain rating sites. White hat SEO, organic editorial placements, Fortune 500 trusted worldwide."
+        title="Why Choose HighDALink - Elite DR90+ Editorial Backlinks"
+        description="Top 1% elite backlink building services provider. Premium DR90+ editorial backlinks. White hat SEO, organic editorial placements, Fortune 500 trusted."
         keywords="elite backlink building services, top 1% link building provider, best link building service, DR90+ editorial backlinks, DA90+ editorial backlinks, premium link building services, high authority link building, 90+ domain rating backlinks, 90+ domain authority backlinks, white hat link building, organic editorial backlinks, premium SEO services, elite SEO services, professional link building, enterprise link building, Fortune 500 link building, quality link building services, expert link building, advanced SEO link building, premium editorial links, top quality backlinks, elite link building company, premium backlink services, high quality backlinks, authority link building, editorial link placement, top tier backlinks, professional SEO services, enterprise SEO solutions, premium domain authority links, elite editorial placements"
       />
     <div className="bg-gray-50">
