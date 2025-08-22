@@ -19,6 +19,13 @@ import ClientDashboard from './components/dashboards/ClientDashboard';
 import WriterDashboard from './components/dashboards/WriterDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 
+// PayPal configuration
+const paypalOptions = {
+  "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID || "AYsqN5awNLw7OraDu4AXGEBE6Pp2iGEUn2_-L4QXnrXls2edDDNNf9jmrOmfN6_7kYjjYXKtA5v7nMUH",
+  currency: "USD",
+  intent: "capture"
+};
+
 interface User {
   id: string;
   name: string;
@@ -91,9 +98,7 @@ function App() {
   return (
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
-        <PayPalScriptProvider options={{
-          "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID || "AXaWaOGDAGCHJnC_mICh4dNlwhTQP8lB4hTlXLEQeWifdX8jUFCW_akhjXIjS8QcSl6MM6QR-wKCrCSm"
-        }}>
+        <PayPalScriptProvider options={paypalOptions}>
           <Router>
             <>
               <SEOHead />
