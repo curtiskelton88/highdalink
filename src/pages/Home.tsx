@@ -31,7 +31,7 @@ function Home() {
     {
       name: "David Park",
       title: "Marketing Manager, SaaS Startup",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7bf7042?w=150&h=150&fit=crop&face",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7bf7042?w=150&h=150&fit=crop&crop=face",
       quote: "The quality of DA90+ editorial backlinks is unmatched. Every link came from genuine high-authority publications, and our search rankings improved dramatically.",
       results: "Top 3 rankings for 12 target keywords"
     }
@@ -278,6 +278,11 @@ function Home() {
             <div className="mt-8 text-center">
               <p className="text-gray-600 mb-4">
                 Learn more about our approach and see why we're different:
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials Section - Sliding Carousel */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
