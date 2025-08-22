@@ -278,34 +278,6 @@ function Home() {
             <div className="mt-8 text-center">
               <p className="text-gray-600 mb-4">
                 Learn more about our approach and see why we're different:
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 text-sm">
-                <Link 
-                  to="/why-choose-us" 
-                  className="text-blue-600 hover:text-blue-700 font-medium underline decoration-2 underline-offset-2"
-                >
-                  Why Choose Our DR90+ Editorial Backlinks
-                </Link>
-                <Link 
-                  to="/guarantee" 
-                  className="text-green-600 hover:text-green-700 font-medium underline decoration-2 underline-offset-2"
-                >
-                  Our Guaranteed Results Promise
-                </Link>
-                <Link 
-                  to="/roi-calculator" 
-                  className="text-purple-600 hover:text-purple-700 font-medium underline decoration-2 underline-offset-2"
-                >
-                  Calculate Your ROI
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Client Logos - Moved to after Ready to Start Building Authority */}
-      <ClientLogos />
 
       {/* Testimonials Section - Sliding Carousel */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
