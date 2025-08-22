@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Users } from 'lucide-react';
+import { trackFormSubmission } from '../utils/analytics';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -21,6 +22,10 @@ function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Contact form submitted:', formData);
+    
+    // Track contact form submission
+    trackFormSubmission('contact_form', true);
+    
     alert('Thank you for your message! We will get back to you within 24 hours.');
   };
 

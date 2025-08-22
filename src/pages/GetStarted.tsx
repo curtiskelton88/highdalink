@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import { trackFormSubmission, trackPackageSelection } from '../utils/analytics';
 
 function GetStarted() {
   const [formData, setFormData] = useState({
@@ -23,8 +24,12 @@ function GetStarted() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
     console.log('Form submitted:', formData);
+    
+    // Track form submission
+    trackFormSubmission('get_started_form', true);
+    trackPackageSelection(formData.package, formData.package.includes('600') ? '$600' : formData.package.includes('1100') ? '$1100' : '$2000');
+    
     alert('Thank you for your order! We will contact you within 24 hours.');
   };
 

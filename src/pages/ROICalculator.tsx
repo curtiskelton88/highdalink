@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, DollarSign, Calculator, BarChart3, ArrowRight, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { trackROICalculatorUsage } from '../utils/analytics';
 
 function ROICalculator() {
   const [inputs, setInputs] = useState({
@@ -27,6 +28,9 @@ function ROICalculator() {
 
   const calculateROI = () => {
     const { currentTraffic, conversionRate, averageOrderValue, currentRankingPosition, targetKeywords, domainAuthority } = inputs;
+    
+    // Track ROI calculator usage
+    trackROICalculatorUsage(inputs);
     
     // Calculate expected ranking improvement based on DA increase
     const daImprovement = Math.min(20, (90 - domainAuthority) * 0.3);
