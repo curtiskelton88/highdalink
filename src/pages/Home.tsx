@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, ChevronRight, Package, FileText, Users, Link2, Shield, DollarSign, Calculator, Star, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 import ClientLogos from '../components/ClientLogos';
 
 function Home() {
@@ -54,6 +55,11 @@ function Home() {
 
   return (
     <>
+      <SEOHead 
+        title="HighDALink - Premium DR90+ Editorial Backlinks | High Authority Link Building"
+        description="Get premium DR90+/DA90+ editorial backlinks from top publications. Elite writers, organic placement, guaranteed results. Trusted by Fortune 500 companies worldwide."
+        keywords="DR90+ backlinks, DA90+ editorial backlinks, high authority link building, premium SEO services, editorial link building, organic backlinks, white hat SEO, link building services"
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-20"></div>

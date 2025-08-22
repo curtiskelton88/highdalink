@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 function GetStarted() {
   const [formData, setFormData] = useState({
@@ -28,6 +29,12 @@ function GetStarted() {
   };
 
   return (
+    <>
+      <SEOHead 
+        title="Get Started - Order DR90+ Editorial Backlinks | HighDALink"
+        description="Start your link building campaign today. Fill out our form to order premium DR90+ editorial backlinks. Elite writers, guaranteed results, 30-day money-back guarantee."
+        keywords="order backlinks, get started link building, DR90+ backlinks order, premium link building service, editorial backlinks campaign"
+      />
     <section className="py-20 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
@@ -200,6 +207,7 @@ function GetStarted() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 

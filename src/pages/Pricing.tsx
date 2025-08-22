@@ -1,9 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Star } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 function Pricing() {
   return (
+    <>
+      <SEOHead 
+        title="Link Building Pricing - DR90+ Editorial Backlinks | HighDALink"
+        description="Transparent pricing for premium DR90+ editorial backlinks. Elite One ($600), Authority Pro ($1,100), Agency Monthly ($2,000). 30-day guarantee included."
+        keywords="link building pricing, DR90+ backlinks cost, editorial backlinks pricing, SEO link building packages, high authority backlinks price"
+      />
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -114,6 +121,7 @@ function Pricing() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 

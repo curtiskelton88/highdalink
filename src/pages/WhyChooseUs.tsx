@@ -1,9 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingUp, Users, Shield, MessageSquare, BarChart3, Zap, ChevronRight, X, Check, Ban, Eye, Heart, Award } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 function WhyChooseUs() {
   return (
+    <>
+      <SEOHead 
+        title="Why Choose HighDALink - Top 1% Link Building Provider | DR90+ Editorial Backlinks"
+        description="Discover why we're the clear choice for premium link building. DR90+ domains only, elite writers, 100% editorial placement, no paid links. Trusted by global brands."
+        keywords="best link building service, top link building provider, DR90+ editorial backlinks, premium SEO services, white hat link building, organic backlinks"
+      />
     <div className="bg-gray-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white py-20">
@@ -321,6 +328,7 @@ function WhyChooseUs() {
         </div>
       </section>
     </div>
+    </>
   );
 }
 

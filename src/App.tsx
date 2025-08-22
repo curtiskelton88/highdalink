@@ -1,6 +1,7 @@
 import React, { useState, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { MessageProvider } from './contexts/MessageContext';
+import SEOHead from './components/SEOHead';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -90,6 +91,7 @@ function App() {
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
         <Router>
+          <SEOHead />
           <div className="min-h-screen bg-white">
             <Routes>
               {/* Public Routes */}
