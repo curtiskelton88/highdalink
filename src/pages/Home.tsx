@@ -264,14 +264,14 @@ function Home() {
             <p className="text-xl text-gray-600 mb-6">Get premium DA90+ editorial backlinks in 4 simple steps with transparent pricing</p>
             <div className="max-w-4xl mx-auto text-gray-600 leading-relaxed">
               <p className="mb-4">
-                Our proven link building process has helped thousands of websites achieve top search rankings through high-authority editorial placements. 
-                Unlike traditional link building services, we focus exclusively on DR90+ editorial backlinks that provide lasting SEO value and 
-                comply with Google's quality guidelines.
+                Our exclusive link building process is designed for elite brands and agencies who demand nothing but the best. We work with a select group of 
+                premium clients who understand the value of top-tier DR90+ editorial backlinks and are committed to dominating their industries. 
+                Unlike mass-market link building services, we focus exclusively on high-impact campaigns that deliver exceptional results.
               </p>
               <p>
-                Each DA90+ editorial backlink is secured through genuine relationships with verified writers and editors at premium publications. 
-                This approach ensures your links remain permanent, valuable, and completely safe from Google penalties while delivering 
-                measurable improvements to your domain authority and search rankings.
+                Each DA90+ editorial backlink is secured through our exclusive network of elite writers and editors at the world's most prestigious publications. 
+                This premium approach ensures your brand associates with industry leaders, your links remain permanent and valuable, and you achieve 
+                the kind of authority that separates market leaders from the competition.
               </p>
             </div>
           </div>
