@@ -201,7 +201,7 @@ function WhyChooseUs() {
                     <th className="text-left py-4 px-6 font-semibold text-gray-900">Features</th>
                     <th className="text-center py-4 px-6 font-semibold text-blue-600 bg-gradient-to-r from-blue-50 to-blue-100 rounded-t-xl">HighDALink (Top 1%)</th>
                     <th className="text-center py-4 px-6 font-semibold text-gray-700">Respona</th>
-                    <th className="text-center py-4 px-6 font-semibold text-gray-700">Authority Builders</th>
+                    <th className="text-center py-4 px-6 font-semibold text-gray-700">uSERP.io</th>
                     <th className="text-center py-4 px-6 font-semibold text-gray-700">LinkBuilder.io</th>
                   </tr>
                 </thead>
@@ -215,7 +215,7 @@ function WhyChooseUs() {
                       </span>
                     </td>
                     <td className="text-center py-4 px-6 text-gray-600">DR50+</td>
-                    <td className="text-center py-4 px-6 text-gray-600">DR70+</td>
+                    <td className="text-center py-4 px-6 text-gray-600">DR60+</td>
                     <td className="text-center py-4 px-6 text-gray-600">DR40+</td>
                   </tr>
                   <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
@@ -227,7 +227,7 @@ function WhyChooseUs() {
                       </span>
                     </td>
                     <td className="text-center py-4 px-6 text-gray-600">70%</td>
-                    <td className="text-center py-4 px-6 text-gray-600">85%</td>
+                    <td className="text-center py-4 px-6 text-gray-600">80%</td>
                     <td className="text-center py-4 px-6">
                       <span className="text-gray-600">60%</span>
                     </td>
@@ -241,7 +241,7 @@ function WhyChooseUs() {
                       </span>
                     </td>
                     <td className="text-center py-4 px-6 text-gray-600">Mixed Quality</td>
-                    <td className="text-center py-4 px-6 text-gray-600">Professional</td>
+                    <td className="text-center py-4 px-6 text-gray-600">Standard</td>
                     <td className="text-center py-4 px-6 text-gray-600">Standard</td>
                   </tr>
                   <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
@@ -253,7 +253,7 @@ function WhyChooseUs() {
                       </span>
                     </td>
                     <td className="text-center py-4 px-6 text-gray-600">30-45 days</td>
-                    <td className="text-center py-4 px-6 text-gray-600">21-30 days</td>
+                    <td className="text-center py-4 px-6 text-gray-600">30-60 days</td>
                     <td className="text-center py-4 px-6 text-gray-600">45+ days</td>
                   </tr>
                   <tr className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
@@ -297,7 +297,7 @@ function WhyChooseUs() {
                       <div className="text-xs text-blue-600">Elite Quality</div>
                     </td>
                     <td className="text-center py-4 px-6 text-gray-600">$1,200</td>
-                    <td className="text-center py-4 px-6 text-gray-600">$800</td>
+                    <td className="text-center py-4 px-6 text-gray-600">$5,000</td>
                     <td className="text-center py-4 px-6 text-gray-600">$400</td>
                   </tr>
                 </tbody>
