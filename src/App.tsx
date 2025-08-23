@@ -139,6 +139,8 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/guarantee" element={<MoneyBackGuarantee />} />
                   <Route path="/roi-calculator" element={<ROICalculator />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogPost />} />
 
                   {/* Authentication Routes */}
                   <Route path="/login" element={
