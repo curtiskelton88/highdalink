@@ -16,12 +16,14 @@ function Blog() {
       title: 'Achieving DR90+ Editorial Backlinks and SEO-Optimized Content: A Comprehensive Guide',
       slug: 'achieving-dr90-editorial-backlinks-seo-guide',
       excerpt: 'Learn the proven strategies for acquiring high-authority editorial backlinks from DR90+ domains and creating content that dominates search rankings.',
-      content: `# Achieving DR90+ Editorial Backlinks and SEO-Optimized Content: A Comprehensive Guide for High-Ranking Websites
-  const blogPosts = getPublishedPosts();
+      content: `# Achieving DR90+ Editorial Backlinks and SEO-Optimized Content: A Comprehensive Guide for High-Ranking Websites`
+    }
+  ];
+  const publishedPosts = getPublishedPosts();
 
   const categories = ['all', 'SEO Strategy', 'Link Building', 'Content Marketing', 'Case Studies'];
 
-  const filteredPosts = blogPosts.filter(post => {
+  const filteredPosts = publishedPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
@@ -71,7 +73,7 @@ function Blog() {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    className={\`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       selectedCategory === category
                         ? 'bg-blue-600 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
