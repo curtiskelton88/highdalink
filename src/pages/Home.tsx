@@ -256,6 +256,10 @@ function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-blue-500/10 text-blue-600 px-6 py-3 rounded-full text-sm font-medium mb-6 border border-blue-200">
+              <Package className="h-4 w-4 mr-2" />
+              Our Proven Process
+            </div>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">How Our DR90+ Editorial Backlinks Work</h2>
             <p className="text-xl text-gray-600 mb-6">Get premium DA90+ editorial backlinks in 4 simple steps with transparent pricing</p>
             <div className="max-w-4xl mx-auto text-gray-600 leading-relaxed">
@@ -272,31 +276,163 @@ function Home() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Process Steps with Enhanced Effects */}
+          <div className="relative">
+            {/* Connection Lines */}
+            <div className="hidden lg:block absolute top-24 left-1/2 transform -translate-x-1/2 w-full max-w-5xl">
+              <div className="flex justify-between items-center px-32">
+                <div className="w-32 h-0.5 bg-gradient-to-r from-blue-500 to-orange-500"></div>
+                <div className="w-32 h-0.5 bg-gradient-to-r from-orange-500 to-green-500"></div>
+                <div className="w-32 h-0.5 bg-gradient-to-r from-green-500 to-purple-500"></div>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
             <div className="bg-white border-2 border-gray-100 rounded-2xl p-8 hover:border-blue-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
                 <Package className="h-8 w-8 text-white" />
               </div>
               <div className="text-center mb-4">
-                <span className="bg-blue-100 text-blue-800 text-sm font-bold px-3 py-1 rounded-full">Step 1</span>
+                <span className="bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 text-sm font-bold px-4 py-2 rounded-full shadow-sm">Step 1</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Choose Your Package</h3>
               <p className="text-gray-600 text-center leading-relaxed">
                 Select from our Elite One, Authority Pro, or Agency Monthly packages with transparent pricing designed for every budget and goal.
               </p>
+              <div className="mt-6 text-center">
+                <div className="inline-flex items-center text-blue-600 text-sm font-medium">
+                  <DollarSign className="h-4 w-4 mr-1" />
+                  Starting at $600
+                </div>
+              </div>
             </div>
 
             <div className="bg-white border-2 border-gray-100 rounded-2xl p-8 hover:border-orange-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
                 <FileText className="h-8 w-8 text-white" />
               </div>
               <div className="text-center mb-4">
-                <span className="bg-orange-100 text-orange-800 text-sm font-bold px-3 py-1 rounded-full">Step 2</span>
+                <span className="bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 text-sm font-bold px-4 py-2 rounded-full shadow-sm">Step 2</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Submit Requirements</h3>
               <p className="text-gray-600 text-center leading-relaxed">
-                Fill out our form with your URL, target keywords, and specific requirements.
+                Fill out our simple form with your URL, target keywords, and specific requirements. Our team reviews everything within 24 hours.
               </p>
+              <div className="mt-6 text-center">
+                <div className="inline-flex items-center text-orange-600 text-sm font-medium">
+                  <Clock className="h-4 w-4 mr-1" />
+                  24hr Response
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white border-2 border-gray-100 rounded-2xl p-8 hover:border-green-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                <Users className="h-8 w-8 text-white" />
+              </div>
+              <div className="text-center mb-4">
+                <span className="bg-gradient-to-r from-green-100 to-green-200 text-green-800 text-sm font-bold px-4 py-2 rounded-full shadow-sm">Step 3</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Elite Writers Work</h3>
+              <p className="text-gray-600 text-center leading-relaxed">
+                Our vetted US & UK native writers create premium content and secure DR90+ editorial backlinks through established editorial relationships.
+              </p>
+              <div className="mt-6 text-center">
+                <div className="inline-flex items-center text-green-600 text-sm font-medium">
+                  <Award className="h-4 w-4 mr-1" />
+                  Elite Quality
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white border-2 border-gray-100 rounded-2xl p-8 hover:border-purple-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                <Link2 className="h-8 w-8 text-white" />
+              </div>
+              <div className="text-center mb-4">
+                <span className="bg-gradient-to-r from-purple-100 to-purple-200 text-purple-800 text-sm font-bold px-4 py-2 rounded-full shadow-sm">Step 4</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Receive Live Links</h3>
+              <p className="text-gray-600 text-center leading-relaxed">
+                Get your DA90+ editorial backlinks delivered within 7-14 days with comprehensive reporting and guaranteed results.
+              </p>
+              <div className="mt-6 text-center">
+                <div className="inline-flex items-center text-purple-600 text-sm font-medium">
+                  <CheckCircle className="h-4 w-4 mr-1" />
+                  7-14 Days
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          {/* Enhanced Value Proposition */}
+          <div className="mt-20 bg-gradient-to-r from-blue-900 via-purple-900 to-blue-900 rounded-3xl p-12 text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+            <div className="relative text-center">
+              <h3 className="text-3xl font-bold mb-6">Why This Process Works So Well</h3>
+              <div className="grid md:grid-cols-3 gap-8 mb-8">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                  <Shield className="h-8 w-8 text-blue-300 mx-auto mb-4" />
+                  <h4 className="text-lg font-semibold mb-3">100% Safe & Compliant</h4>
+                  <p className="text-blue-100 text-sm">Every DR90+ editorial backlink follows Google's guidelines with zero risk of penalties.</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                  <Award className="h-8 w-8 text-green-300 mx-auto mb-4" />
+                  <h4 className="text-lg font-semibold mb-3">Proven Track Record</h4>
+                  <p className="text-blue-100 text-sm">Over 15,000 successful DA90+ editorial backlinks delivered to Fortune 500 companies.</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                  <TrendingUp className="h-8 w-8 text-orange-300 mx-auto mb-4" />
+                  <h4 className="text-lg font-semibold mb-3">Measurable Results</h4>
+                  <p className="text-blue-100 text-sm">Average 47% increase in organic traffic within 3 months of campaign completion.</p>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link 
+                  to="/get-started"
+                  className="bg-white text-blue-600 px-8 py-4 rounded-xl hover:bg-gray-100 transition-all transform hover:scale-105 font-semibold inline-flex items-center justify-center"
+                >
+                  Start Your Campaign Today
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+                <Link 
+                  to="/why-choose-us"
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl hover:bg-white hover:text-blue-600 transition-all font-semibold inline-flex items-center justify-center"
+                >
+                  Learn More About Our Process
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Proof Numbers */}
+          <div className="mt-16 bg-gradient-to-r from-gray-50 to-blue-50 rounded-3xl p-8 border border-gray-100">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Trusted by Industry Leaders</h3>
+              <p className="text-gray-600">Join thousands of successful campaigns</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">15,000+</div>
+                <div className="text-sm text-gray-600">DR90+ Links Delivered</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-green-600 mb-2">500+</div>
+                <div className="text-sm text-gray-600">Happy Clients</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-orange-600 mb-2">DR92</div>
+                <div className="text-sm text-gray-600">Average Domain Rating</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-purple-600 mb-2">98%</div>
+                <div className="text-sm text-gray-600">Client Satisfaction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
             </div>
 
             <div className="bg-white border-2 border-gray-100 rounded-2xl p-8 hover:border-green-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
