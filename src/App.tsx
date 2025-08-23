@@ -13,6 +13,8 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import MoneyBackGuarantee from './pages/MoneyBackGuarantee';
 import ROICalculator from './pages/ROICalculator';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import UnifiedLogin from './components/UnifiedLogin';
 import AdminDashboard from './components/dashboards/AdminDashboard';
 import ClientDashboard from './components/dashboards/ClientDashboard';
