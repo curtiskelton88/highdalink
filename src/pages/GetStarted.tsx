@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import PayPalButton from '../components/PayPalButton';
 import { useAuth } from '../App';
@@ -10,6 +10,13 @@ function GetStarted() {
   const [showPayment, setShowPayment] = useState(false);
   const { createClientAccount } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Check if user came from pricing page with pre-selected package
+  const locationState = location.state as { selectedPackage?: string; fromPricing?: boolean } | null;
+  const preSelectedPackage = locationState?.selectedPackage || 'Authority Pro';
+  const fromPricing = locationState?.fromPricing || false;
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,7 +24,7 @@ function GetStarted() {
     targetUrl: '',
     keywords: '',
     category: '',
-    package: 'Authority Pro',
+    package: preSelectedPackage,
     message: ''
   });
 
@@ -132,9 +139,18 @@ function GetStarted() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Get Started Today</h1>
-          <p className="text-xl text-gray-600">
-            {showPayment ? 'Complete your payment to start your link building campaign' : 'Fill out the form below and proceed to payment or request a quote'}
-          </p>
+          <div className="space-y-2">
+            <p className="text-xl text-gray-600">
+              {showPayment ? 'Complete your payment to start your link building campaign' : 'Fill out the form below and proceed to payment or request a quote'}
+            </p>
+            {fromPricing && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-2xl mx-auto">
+                <p className="text-blue-800 text-sm">
+                  <strong>✓ Package Selected:</strong> {preSelectedPackage} - Complete the form below to proceed with your order
+                </p>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -291,7 +307,7 @@ function GetStarted() {
               {!showPayment && (
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <p className="text-sm text-blue-800">
-                    <strong>Next Steps:</strong> Complete the form and choose to either pay now to start immediately, or request a quote for custom requirements.
+                    <strong>Next Steps:</strong> {fromPricing ? 'Complete your project details and proceed to secure payment.' : 'Complete the form and choose to either pay now to start immediately, or request a quote for custom requirements.'}
                   </p>
                 </div>
               )}
@@ -309,10 +325,20 @@ function GetStarted() {
                     <button
                       type="button"
                       onClick={handleSubmit}
-                      className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold flex items-center justify-center"
+                      className={`w-full py-3 rounded-lg transition-all font-semibold flex items-center justify-center ${
+                        fromPricing 
+                          ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                      disabled={fromPricing}
                     >
-                      Request Quote Instead
+                      {fromPricing ? 'Quote Option Disabled' : 'Request Quote Instead'}
                     </button>
+                    {fromPricing && (
+                      <p className="text-xs text-gray-500 text-center">
+                        Package already selected from pricing page
+                      </p>
+                    )}
                   </>
                 ) : (
                   <button
@@ -330,7 +356,7 @@ function GetStarted() {
           {/* Payment Section */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-              {showPayment ? 'Complete Payment' : 'Package Summary'}
+              {showPayment ? 'Complete Payment' : `${fromPricing ? 'Selected' : 'Current'} Package`}
             </h2>
             
             {/* Package Summary */}
@@ -338,7 +364,12 @@ function GetStarted() {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">{formData.package}</h3>
-                  <p className="text-gray-600 text-sm">{getPackageDescription()}</p>
+                  <div className="space-y-1">
+                    <p className="text-gray-600 text-sm">{getPackageDescription()}</p>
+                    {fromPricing && (
+                      <p className="text-blue-600 text-xs font-medium">✓ Selected from pricing page</p>
+                    )}
+                  </div>
                 </div>
                 <div className="text-right">
                   <div className="text-3xl font-bold text-blue-600">${getPackageAmount()}</div>
@@ -398,7 +429,7 @@ function GetStarted() {
             ) : (
               <div className="text-center">
                 <p className="text-gray-600 mb-4">
-                  Complete the form on the left to proceed with payment or request a custom quote.
+                  {fromPricing ? 'Complete your project details to proceed with secure payment.' : 'Complete the form on the left to proceed with payment or request a custom quote.'}
                 </p>
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                   <div className="flex items-center justify-center mb-2">

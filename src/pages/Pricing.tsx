@@ -1,18 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CheckCircle, Star } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import PayPalButton from '../components/PayPalButton';
 
 function Pricing() {
-  const handlePaymentSuccess = (details: any, packageName: string) => {
-    console.log('Payment successful for:', packageName, details);
-    alert(`Payment successful! Transaction ID: ${details.id}\n\nThank you for purchasing ${packageName}. We will contact you within 24 hours to begin your link building campaign.`);
-  };
+  const navigate = useNavigate();
 
-  const handlePaymentError = (error: any) => {
-    console.error('Payment failed:', error);
-    alert('Payment failed. Please try again or contact our support team.');
+  const handleSelectPackage = (packageName: string) => {
+    // Navigate to Get Started page with pre-selected package
+    navigate('/get-started', { 
+      state: { 
+        selectedPackage: packageName,
+        fromPricing: true 
+      } 
+    });
   };
 
   return (
@@ -48,20 +49,17 @@ function Pricing() {
               </li>
             </ul>
             <div className="space-y-3">
-              <div className="min-h-[120px]">
-                <PayPalButton
-                  amount="600"
-                  packageName="Elite One"
-                  description="1 DR90+ backlink with 1500-word SEO article"
-                  onSuccess={(details) => handlePaymentSuccess(details, 'Elite One')}
-                  onError={handlePaymentError}
-                />
-              </div>
+              <button
+                onClick={() => handleSelectPackage('Elite One')}
+                className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white py-4 px-8 rounded-lg hover:from-blue-700 hover:to-orange-600 transition-all transform hover:scale-105 font-semibold text-lg flex items-center justify-center"
+              >
+                Select Elite One Package
+              </button>
               <Link 
                 to="/get-started"
                 className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"
               >
-                Or Get Quote First
+                Get Custom Quote
               </Link>
             </div>
           </div>
@@ -94,20 +92,17 @@ function Pricing() {
               </li>
             </ul>
             <div className="space-y-3">
-              <div className="min-h-[120px]">
-                <PayPalButton
-                  amount="1100"
-                  packageName="Authority Pro"
-                  description="2 DR90+ backlinks with premium SEO articles and spam audit"
-                  onSuccess={(details) => handlePaymentSuccess(details, 'Authority Pro')}
-                  onError={handlePaymentError}
-                />
-              </div>
+              <button
+                onClick={() => handleSelectPackage('Authority Pro')}
+                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-4 px-8 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all transform hover:scale-105 font-semibold text-lg flex items-center justify-center"
+              >
+                Select Authority Pro Package
+              </button>
               <Link 
                 to="/get-started"
                 className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"
               >
-                Or Get Quote First
+                Get Custom Quote
               </Link>
             </div>
           </div>
@@ -138,20 +133,17 @@ function Pricing() {
               </li>
             </ul>
             <div className="space-y-3">
-              <div className="min-h-[120px]">
-                <PayPalButton
-                  amount="2000"
-                  packageName="Agency Monthly"
-                  description="4 DR90+ backlinks monthly with Slack support and reporting"
-                  onSuccess={(details) => handlePaymentSuccess(details, 'Agency Monthly')}
-                  onError={handlePaymentError}
-                />
-              </div>
+              <button
+                onClick={() => handleSelectPackage('Agency Monthly')}
+                className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-4 px-8 rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all transform hover:scale-105 font-semibold text-lg flex items-center justify-center"
+              >
+                Select Agency Monthly Package
+              </button>
               <Link 
                 to="/get-started"
                 className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg hover:bg-gray-200 transition-all font-semibold block text-center text-sm"
               >
-                Or Get Quote First
+                Get Custom Quote
               </Link>
             </div>
           </div>
