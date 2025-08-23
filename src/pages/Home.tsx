@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, ChevronRight, Package, FileText, Users, Link2, Shield, DollarSign, Calculator, Star, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
+import { ArrowRight, Award, ChevronRight, Package, FileText, Users, Link2, Shield, DollarSign, Calculator, Star, ChevronLeft, ChevronRight as ChevronRightIcon, Clock, CheckCircle, TrendingUp } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import ClientLogos from '../components/ClientLogos';
 
