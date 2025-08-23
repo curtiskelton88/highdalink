@@ -273,6 +273,47 @@ Ready to dominate your niche? [Contact HighDALink.com today](/contact) to discus
                   }}
                 />
               </div>
+              
+              {/* Author Bio Section */}
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-gray-100">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-bold text-xl">HD</span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">About HighDALink</h3>
+                      <p className="text-gray-700 mb-4 leading-relaxed">
+                        HighDALink is the premier provider of <strong>DR90+ editorial backlinks</strong> and <strong>high-authority link building services</strong>. 
+                        Our team of SEO experts and elite writers specializes in <strong>white-hat link building strategies</strong>, 
+                        <strong>premium editorial placements</strong>, and <strong>organic SEO growth</strong>. With years of experience in 
+                        digital marketing, content creation, and search engine optimization, we've helped hundreds of businesses achieve 
+                        top search rankings through strategic link building campaigns.
+                      </p>
+                      <p className="text-gray-700 mb-4 leading-relaxed">
+                        Our expertise includes <strong>DR90+ editorial backlinks</strong>, <strong>DA90+ editorial backlinks</strong>, 
+                        <strong>premium SEO services</strong>, <strong>high-authority link building</strong>, 
+                        <strong>organic editorial placements</strong>, and <strong>professional content marketing</strong>. 
+                        We work exclusively with elite clients who demand the highest quality backlinks from top-tier publications and authoritative domains.
+                      </p>
+                      <div className="flex flex-wrap gap-3">
+                        <Link 
+                          to="/why-choose-us"
+                          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                        >
+                          Learn More About Our Services
+                        </Link>
+                        <Link 
+                          to="/get-started"
+                          className="border border-blue-600 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-50 transition-colors text-sm font-medium"
+                        >
+                          Get Started Today
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
