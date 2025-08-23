@@ -140,6 +140,118 @@ function Home() {
         </div>
       </section>
 
+      {/* Dashboard Preview Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">See What You Get</h2>
+            <p className="text-xl text-gray-600">Professional client dashboard to track your campaigns</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-3xl p-8 border border-gray-200">
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4">
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                  <div className="text-white text-sm ml-4">HighDALink Client Dashboard</div>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-xl text-white">
+                    <div className="text-blue-100 text-sm">Total Links</div>
+                    <div className="text-2xl font-bold">47</div>
+                    <div className="text-blue-200 text-xs">+12 this month</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-green-500 to-green-600 p-4 rounded-xl text-white">
+                    <div className="text-green-100 text-sm">Avg Domain Rating</div>
+                    <div className="text-2xl font-bold">DR92</div>
+                    <div className="text-green-200 text-xs">Premium quality</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-4 rounded-xl text-white">
+                    <div className="text-orange-100 text-sm">Active Projects</div>
+                    <div className="text-2xl font-bold">3</div>
+                    <div className="text-orange-200 text-xs">2 in progress</div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4">
+                  <div className="text-sm font-medium text-gray-700 mb-3">Recent Links Delivered</div>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center bg-white p-3 rounded-lg">
+                      <div>
+                        <div className="font-medium text-gray-900">techcrunch.com</div>
+                        <div className="text-sm text-gray-600">Future of SaaS Technology</div>
+                      </div>
+                      <div className="text-blue-600 font-semibold">DR94</div>
+                    </div>
+                    <div className="flex justify-between items-center bg-white p-3 rounded-lg">
+                      <div>
+                        <div className="font-medium text-gray-900">entrepreneur.com</div>
+                        <div className="text-sm text-gray-600">Startup Growth Strategies</div>
+                      </div>
+                      <div className="text-blue-600 font-semibold">DR91</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Our Elite Link Building Service</h2>
+            <p className="text-xl text-gray-600">Premium features that set us apart from the competition</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <Shield className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">100% White Hat</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Only organic editorial placements from verified writers. No PBNs, no paid placements, no penalties - guaranteed.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <Award className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">DR90+ Only</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Every backlink comes from premium publications with Domain Rating 90+ for maximum SEO impact and authority transfer.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <Users className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Elite Writers</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Native US & UK writers with bylines on major publications. Previously worked with Nike, TripAdvisor, and Fortune 500 companies.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <DollarSign className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Guaranteed Results</h3>
+              <p className="text-gray-600 leading-relaxed">
+                30-day money-back guarantee, Google penalty protection, and delivery within 7-14 days or get a discount.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* How It Works */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -285,6 +397,63 @@ function Home() {
               <p className="text-gray-600 mb-4">
                 Learn more about our approach and see why we're different:
               </p>
+              
+              {/* Second Dashboard Preview */}
+              <div className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-3xl p-8 border border-gray-200 mt-12">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Track Everything in Real-Time</h3>
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                  <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
+                      <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                      <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                      <div className="text-white text-sm ml-4">Analytics & Performance</div>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                      <div className="bg-gradient-to-br from-green-500 to-green-600 p-4 rounded-xl text-white">
+                        <div className="text-green-100 text-sm">Domain Authority Growth</div>
+                        <div className="text-2xl font-bold">+12 DA</div>
+                        <div className="text-green-200 text-xs">Since campaign start</div>
+                      </div>
+                      <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-4 rounded-xl text-white">
+                        <div className="text-blue-100 text-sm">Organic Traffic</div>
+                        <div className="text-2xl font-bold">+47%</div>
+                        <div className="text-blue-200 text-xs">3-month improvement</div>
+                      </div>
+                      <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-4 rounded-xl text-white">
+                        <div className="text-purple-100 text-sm">Keyword Rankings</div>
+                        <div className="text-2xl font-bold">+23</div>
+                        <div className="text-purple-200 text-xs">Top 10 positions</div>
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 rounded-xl p-4">
+                      <div className="text-sm font-medium text-gray-700 mb-3">Link Quality Distribution</div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">DR 90-100</span>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-24 bg-gray-200 rounded-full h-2">
+                              <div className="bg-green-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+                            </div>
+                            <span className="text-sm font-semibold text-gray-900">15</span>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">DR 80-89</span>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-24 bg-gray-200 rounded-full h-2">
+                              <div className="bg-blue-500 h-2 rounded-full" style={{ width: '60%' }}></div>
+                            </div>
+                            <span className="text-sm font-semibold text-gray-900">12</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -357,6 +526,47 @@ function Home() {
             </div>
           </div>
 
+          {/* FAQ Section */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-lg text-gray-600">Quick answers to help you get started with confidence</p>
+            </div>
+
+            <div className="max-w-4xl mx-auto space-y-6">
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Are your backlinks safe from Google penalties?</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Absolutely. We use 100% white-hat, organic editorial placements from verified writers on DR90+ publications. 
+                  No PBNs, no paid placements, no link schemes. Plus, we offer full Google penalty protection with every campaign.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">How quickly will I see results?</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Links are typically delivered within 7-14 days. You'll see immediate authority benefits, but ranking improvements 
+                  usually appear within 4-12 weeks as Google processes the new signals. Long-term growth compounds over 3-6 months.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">What makes your writers "elite"?</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Our writers are native US/UK professionals with verified bylines on major publications. They've worked with brands 
+                  like TripAdvisor, Nike, UCLA, and Fortune 500 companies, ensuring your content meets the highest editorial standards.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Do you guarantee the links will be permanent?</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Yes. Our links are placed as genuine editorial content by established writers, not as paid advertisements. 
+                  This means they remain permanent as part of the publication's content strategy, providing lasting SEO value.
+                </p>
+              </div>
+            </div>
+          </div>
           {/* CTA Section */}
           <div className="text-center mt-16">
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 text-white">
