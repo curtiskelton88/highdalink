@@ -119,7 +119,7 @@ Google's algorithm increasingly prioritizes content that demonstrates E-E-A-T. T
 Ready to dominate your niche? [Contact HighDALink today](/contact) to discuss how our [tailored link building strategies](/get-started) can help you achieve your SEO goals.
 
 ## About the Author
-Ready to dominate your niche? Contact HighDALink.com today to discuss how our tailored strategies can help you achieve your SEO goals.`,
+
 **HighDALink Team** - Elite Link Building Specialists
 
 HighDALink is the premier provider of DR90+ editorial backlinks and high-authority link building services. Our team of SEO experts and elite writers specializes in white-hat link building strategies, premium editorial placements, and organic SEO growth. With years of experience in digital marketing, content creation, and search engine optimization, we've helped hundreds of businesses achieve top search rankings through strategic link building campaigns.
@@ -189,7 +189,7 @@ Our expertise includes DR90+ editorial backlinks, DA90+ editorial backlinks, pre
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    className={\`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                       selectedCategory === category
                         ? 'bg-blue-600 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
