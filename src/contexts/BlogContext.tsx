@@ -18,11 +18,10 @@ interface BlogPost {
 
 interface BlogContextType {
   posts: BlogPost[];
-  addPost: (post: Omit<BlogPost, 'id' | 'publishDate'>) => void;
-  updatePost: (id: string, post: Partial<BlogPost>) => void;
-  deletePost: (id: string) => void;
-  getPostBySlug: (slug: string) => BlogPost | undefined;
   getPublishedPosts: () => BlogPost[];
+  getPostBySlug: (slug: string) => BlogPost | undefined;
+  getFeaturedPosts: () => BlogPost[];
+  getPostsByCategory: (category: string) => BlogPost[];
 }
 
 const BlogContext = createContext<BlogContextType | undefined>(undefined);
@@ -155,7 +154,7 @@ Ready to dominate your niche? [Contact HighDALink today](/contact) to discuss ho
       featured: true,
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
       published: true
-    }
+    },
     {
       id: '2',
       title: 'White Hat Link Building Strategies: How to Build High Authority Backlinks Safely in 2024',
@@ -665,51 +664,29 @@ Ready to build high-authority backlinks that improve both your DA and DR scores?
     }
   ]);
 
-  const generateSlug = (title: string): string => {
-    return title
-      .toLowerCase()
-      .replace(/[^a-z0-9 -]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .trim();
-  };
-
-  const addPost = (postData: Omit<BlogPost, 'id' | 'publishDate'>) => {
-    const newPost: BlogPost = {
-      ...postData,
-      id: Date.now().toString(),
-      publishDate: new Date().toISOString().split('T')[0],
-      slug: postData.slug || generateSlug(postData.title)
-    };
-    setPosts(prev => [newPost, ...prev]);
-  };
-
-  const updatePost = (id: string, updates: Partial<BlogPost>) => {
-    setPosts(prev => prev.map(post => 
-      post.id === id ? { ...post, ...updates } : post
-    ));
-  };
-
-  const deletePost = (id: string) => {
-    setPosts(prev => prev.filter(post => post.id !== id));
+  const getPublishedPosts = () => {
+    return posts.filter(post => post.published);
   };
 
   const getPostBySlug = (slug: string) => {
     return posts.find(post => post.slug === slug && post.published);
   };
 
-  const getPublishedPosts = () => {
-    return posts.filter(post => post.published);
+  const getFeaturedPosts = () => {
+    return posts.filter(post => post.featured && post.published);
+  };
+
+  const getPostsByCategory = (category: string) => {
+    return posts.filter(post => post.category === category && post.published);
   };
 
   return (
     <BlogContext.Provider value={{
       posts,
-      addPost,
-      updatePost,
-      deletePost,
+      getPublishedPosts,
       getPostBySlug,
-      getPublishedPosts
+      getFeaturedPosts,
+      getPostsByCategory
     }}>
       {children}
     </BlogContext.Provider>
