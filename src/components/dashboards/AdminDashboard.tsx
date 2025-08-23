@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import DashboardLayout from './DashboardLayout';
 import Modal from '../Modal';
 import { useMessages } from '../../contexts/MessageContext';
+import { useBlog } from '../../contexts/BlogContext';
 import { useAuth } from '../../App';
 import { 
   BarChart3, Users, FileText, DollarSign, TrendingUp, 
   Eye, Edit, Trash2, Plus, Calendar, Award, AlertCircle,
   CheckCircle, Clock, UserCheck, CreditCard, MessageSquare,
-  Send, Reply, X
+  Send, Reply, X, BookOpen, Image, Tag, Star
 } from 'lucide-react';
 
 function AdminDashboard() {
@@ -95,6 +96,17 @@ function AdminDashboard() {
         <MessageSquare className="h-5 w-5 mr-3" />
         <span className="font-medium">Messages</span>
       </button>
+      <button
+        onClick={() => setActiveTab('blog')}
+        className={`w-full flex items-center px-4 py-3 rounded-lg transition-all duration-200 ${
+          activeTab === 'blog' 
+            ? 'bg-blue-600 text-white shadow-md' 
+            : 'text-gray-700 hover:bg-gray-100 hover:text-blue-600'
+        }`}
+      >
+        <BookOpen className="h-5 w-5 mr-3" />
+        <span className="font-medium">Blog Management</span>
+      </button>
     </nav>
   );
 
@@ -114,6 +126,8 @@ function AdminDashboard() {
         return <PaymentManagementTab />;
       case 'messages':
         return <MessagesTab />;
+      case 'blog':
+        return <BlogManagementTab />;
       default:
         return <OverviewTab />;
     }
@@ -1146,6 +1160,391 @@ function MessagesTab() {
         )}
       </Modal>
     </div>
+  );
+}
+
+function BlogManagementTab() {
+  const { posts, addPost, updatePost, deletePost } = useBlog();
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<any>(null);
+
+  const handleAddPost = (postData: any) => {
+    addPost(postData);
+    setShowAddModal(false);
+  };
+
+  const handleEditPost = (post: any) => {
+    setSelectedPost(post);
+    setShowEditModal(true);
+  };
+
+  const handleUpdatePost = (postData: any) => {
+    if (selectedPost) {
+      updatePost(selectedPost.id, postData);
+      setShowEditModal(false);
+      setSelectedPost(null);
+    }
+  };
+
+  const handleDeletePost = (id: string) => {
+    if (confirm('Are you sure you want to delete this blog post?')) {
+      deletePost(id);
+    }
+  };
+
+  const togglePublished = (post: any) => {
+    updatePost(post.id, { published: !post.published });
+  };
+
+  return (
+    <div>
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">Blog Management</h1>
+          <p className="text-gray-600 mt-2">Create and manage blog articles</p>
+        </div>
+        <button 
+          onClick={() => setShowAddModal(true)}
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+        >
+          <Plus className="h-5 w-5 mr-2" />
+          New Article
+        </button>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-blue-100">Total Articles</p>
+              <p className="text-3xl font-bold">{posts.length}</p>
+            </div>
+            <BookOpen className="h-12 w-12 text-blue-200" />
+          </div>
+        </div>
+        <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-green-100">Published</p>
+              <p className="text-3xl font-bold">{posts.filter(p => p.published).length}</p>
+            </div>
+            <CheckCircle className="h-12 w-12 text-green-200" />
+          </div>
+        </div>
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-6 rounded-2xl text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-orange-100">Drafts</p>
+              <p className="text-3xl font-bold">{posts.filter(p => !p.published).length}</p>
+            </div>
+            <FileText className="h-12 w-12 text-orange-200" />
+          </div>
+        </div>
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-2xl text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-purple-100">Featured</p>
+              <p className="text-3xl font-bold">{posts.filter(p => p.featured).length}</p>
+            </div>
+            <Star className="h-12 w-12 text-purple-200" />
+          </div>
+        </div>
+      </div>
+
+      {/* Blog Posts Table */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <table className="w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Article</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Category</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Status</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Date</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {posts.map((post) => (
+              <tr key={post.id} className="hover:bg-gray-50">
+                <td className="px-6 py-4">
+                  <div className="flex items-start space-x-3">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-16 h-12 object-cover rounded-lg"
+                    />
+                    <div>
+                      <div className="font-medium text-gray-900 line-clamp-2">{post.title}</div>
+                      <div className="text-sm text-gray-500">{post.readTime}</div>
+                      {post.featured && (
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800 mt-1">
+                          <Star className="h-3 w-3 mr-1" />
+                          Featured
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </td>
+                <td className="px-6 py-4 text-sm text-gray-900">{post.category}</td>
+                <td className="px-6 py-4">
+                  <button
+                    onClick={() => togglePublished(post)}
+                    className={`px-3 py-1 text-xs rounded-full font-medium ${
+                      post.published 
+                        ? 'bg-green-100 text-green-800 hover:bg-green-200' 
+                        : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                    } transition-colors`}
+                  >
+                    {post.published ? 'Published' : 'Draft'}
+                  </button>
+                </td>
+                <td className="px-6 py-4 text-sm text-gray-900">{post.publishDate}</td>
+                <td className="px-6 py-4">
+                  <div className="flex space-x-2">
+                    <button 
+                      onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+                      disabled={!post.published}
+                    >
+                      <Eye className="h-4 w-4" />
+                    </button>
+                    <button 
+                      onClick={() => handleEditPost(post)}
+                      className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </button>
+                    <button 
+                      onClick={() => handleDeletePost(post.id)}
+                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Add Post Modal */}
+      <Modal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        title="Create New Article"
+        maxWidth="max-w-4xl"
+      >
+        <BlogPostForm onSubmit={handleAddPost} onCancel={() => setShowAddModal(false)} />
+      </Modal>
+
+      {/* Edit Post Modal */}
+      <Modal
+        isOpen={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        title="Edit Article"
+        maxWidth="max-w-4xl"
+      >
+        <BlogPostForm 
+          initialData={selectedPost}
+          onSubmit={handleUpdatePost} 
+          onCancel={() => setShowEditModal(false)} 
+        />
+      </Modal>
+    </div>
+  );
+}
+
+function BlogPostForm({ initialData, onSubmit, onCancel }: { 
+  initialData?: any; 
+  onSubmit: (data: any) => void; 
+  onCancel: () => void 
+}) {
+  const [formData, setFormData] = useState({
+    title: initialData?.title || '',
+    slug: initialData?.slug || '',
+    excerpt: initialData?.excerpt || '',
+    content: initialData?.content || '',
+    author: initialData?.author || 'HighDALink Team',
+    category: initialData?.category || 'SEO Strategy',
+    tags: initialData?.tags?.join(', ') || '',
+    image: initialData?.image || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
+    featured: initialData?.featured || false,
+    published: initialData?.published || false,
+    readTime: initialData?.readTime || '5 min read'
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const postData = {
+      ...formData,
+      tags: formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
+      slug: formData.slug || formData.title.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-')
+    };
+    
+    onSubmit(postData);
+  };
+
+  const categories = ['SEO Strategy', 'Link Building', 'Content Marketing', 'Case Studies', 'Digital PR', 'Technical SEO'];
+
+  return (
+    <form onSubmit={handleSubmit} className="p-6 space-y-6 max-h-[80vh] overflow-y-auto">
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+          <input
+            type="text"
+            required
+            value={formData.title}
+            onChange={(e) => setFormData({...formData, title: e.target.value})}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Enter article title"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Slug</label>
+          <input
+            type="text"
+            value={formData.slug}
+            onChange={(e) => setFormData({...formData, slug: e.target.value})}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="article-url-slug (auto-generated if empty)"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Excerpt *</label>
+        <textarea
+          required
+          value={formData.excerpt}
+          onChange={(e) => setFormData({...formData, excerpt: e.target.value})}
+          rows={3}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="Brief description of the article"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Content * (Markdown supported)</label>
+        <textarea
+          required
+          value={formData.content}
+          onChange={(e) => setFormData({...formData, content: e.target.value})}
+          rows={12}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+          placeholder="Write your article content here. Use markdown formatting (# for headings, ** for bold, etc.)"
+        />
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-6">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Category *</label>
+          <select
+            required
+            value={formData.category}
+            onChange={(e) => setFormData({...formData, category: e.target.value})}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            {categories.map(cat => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Author</label>
+          <input
+            type="text"
+            value={formData.author}
+            onChange={(e) => setFormData({...formData, author: e.target.value})}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Read Time</label>
+          <input
+            type="text"
+            value={formData.readTime}
+            onChange={(e) => setFormData({...formData, readTime: e.target.value})}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="5 min read"
+          />
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Tags (comma-separated)</label>
+          <input
+            type="text"
+            value={formData.tags}
+            onChange={(e) => setFormData({...formData, tags: e.target.value})}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="SEO, Link Building, Content Marketing"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image URL</label>
+          <input
+            type="url"
+            value={formData.image}
+            onChange={(e) => setFormData({...formData, image: e.target.value})}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
+      </div>
+
+      <div className="flex items-center space-x-6">
+        <label className="flex items-center">
+          <input
+            type="checkbox"
+            checked={formData.featured}
+            onChange={(e) => setFormData({...formData, featured: e.target.checked})}
+            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+          />
+          <span className="ml-2 text-sm text-gray-700">Featured Article</span>
+        </label>
+        <label className="flex items-center">
+          <input
+            type="checkbox"
+            checked={formData.published}
+            onChange={(e) => setFormData({...formData, published: e.target.checked})}
+            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+          />
+          <span className="ml-2 text-sm text-gray-700">Publish Immediately</span>
+        </label>
+      </div>
+
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <h4 className="font-medium text-blue-900 mb-2">SEO Tips:</h4>
+        <ul className="text-sm text-blue-800 space-y-1">
+          <li>• Include target keywords naturally in title and content</li>
+          <li>• Add internal links to other pages: [link text](/page-url)</li>
+          <li>• Use headings (# ## ###) to structure content</li>
+          <li>• Keep excerpts under 160 characters for meta descriptions</li>
+        </ul>
+      </div>
+
+      <div className="flex space-x-3 pt-4 border-t border-gray-200">
+        <button
+          type="submit"
+          className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+        >
+          {initialData ? 'Update Article' : 'Create Article'}
+        </button>
+        <button
+          type="button"
+          onClick={onCancel}
+          className="flex-1 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
   );
 }
 

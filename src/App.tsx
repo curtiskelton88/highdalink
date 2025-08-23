@@ -2,6 +2,7 @@ import React, { useState, createContext, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { MessageProvider } from './contexts/MessageContext';
+import { BlogProvider } from './contexts/BlogContext';
 import SEOHead from './components/SEOHead';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -122,60 +123,62 @@ function App() {
   return (
     <AuthContext.Provider value={authValue}>
       <MessageProvider>
-        <PayPalScriptProvider 
-          options={getPayPalOptions()}
-          deferLoading={false}
-        >
-          <Router>
-            <>
-              <SEOHead />
-              <div className="min-h-screen bg-gray-50 flex flex-col">
-                <Header />
-                <Routes>
-                  {/* Public Routes */}
-                  <Route path="/" element={<Home />} />
-                  <Route path="/why-choose-us" element={<WhyChooseUs />} />
-                  <Route path="/pricing" element={<Pricing />} />
-                  <Route path="/get-started" element={<GetStarted />} />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/guarantee" element={<MoneyBackGuarantee />} />
-                  <Route path="/roi-calculator" element={<ROICalculator />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:slug" element={<BlogPost />} />
+        <BlogProvider>
+          <PayPalScriptProvider 
+            options={getPayPalOptions()}
+            deferLoading={false}
+          >
+            <Router>
+              <>
+                <SEOHead />
+                <div className="min-h-screen bg-gray-50 flex flex-col">
+                  <Header />
+                  <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/why-choose-us" element={<WhyChooseUs />} />
+                    <Route path="/pricing" element={<Pricing />} />
+                    <Route path="/get-started" element={<GetStarted />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/guarantee" element={<MoneyBackGuarantee />} />
+                    <Route path="/roi-calculator" element={<ROICalculator />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
 
-                  {/* Authentication Routes */}
-                  <Route path="/login" element={
-                    user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <UnifiedLogin />
-                  } />
+                    {/* Authentication Routes */}
+                    <Route path="/login" element={
+                      user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <UnifiedLogin />
+                    } />
 
-                  {/* Protected Dashboard Routes */}
-                  <Route path="/dashboard/admin" element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminDashboard />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/dashboard/client" element={
-                    <ProtectedRoute requiredRole="client">
-                      <ClientDashboard />
-                    </ProtectedRoute>
-                  } />
-                  <Route path="/dashboard/writer" element={
-                    <ProtectedRoute requiredRole="writer">
-                      <WriterDashboard />
-                    </ProtectedRoute>
-                  } />
+                    {/* Protected Dashboard Routes */}
+                    <Route path="/dashboard/admin" element={
+                      <ProtectedRoute requiredRole="admin">
+                        <AdminDashboard />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/dashboard/client" element={
+                      <ProtectedRoute requiredRole="client">
+                        <ClientDashboard />
+                      </ProtectedRoute>
+                    } />
+                    <Route path="/dashboard/writer" element={
+                      <ProtectedRoute requiredRole="writer">
+                        <WriterDashboard />
+                      </ProtectedRoute>
+                    } />
 
-                  {/* Redirect dashboard to appropriate role */}
-                  <Route path="/dashboard" element={
-                    user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <Navigate to="/login" replace />
-                  } />
-                </Routes>
-                <Footer />
-              </div>
-            </>
-          </Router>
-        </PayPalScriptProvider>
+                    {/* Redirect dashboard to appropriate role */}
+                    <Route path="/dashboard" element={
+                      user ? <Navigate to={`/dashboard/${user.role}`} replace /> : <Navigate to="/login" replace />
+                    } />
+                  </Routes>
+                  <Footer />
+                </div>
+              </>
+            </Router>
+          </PayPalScriptProvider>
+        </BlogProvider>
       </MessageProvider>
     </AuthContext.Provider>
   );
