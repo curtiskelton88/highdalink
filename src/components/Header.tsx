@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Link2, Menu, X, LogIn, Calculator, Shield } from 'lucide-react';
+import { useAuth } from '../App';
 
 function Header() {
   const location = useLocation();
+  const { isAuthenticated, user } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => {
@@ -55,13 +57,29 @@ function Header() {
               <Shield className="h-4 w-4 mr-1" />
               Guarantee
             </Link>
-            <Link 
-              to="/login" 
-              className="flex items-center text-gray-700 hover:text-blue-600 transition-colors border border-gray-300 px-4 py-2 rounded-lg hover:border-blue-600"
-            >
-              <LogIn className="h-4 w-4 mr-2" />
-              Login
-            </Link>
+            {isAuthenticated ? (
+              <Link 
+                to={`/dashboard/${user?.role}`}
+                className="flex items-center text-gray-700 hover:text-blue-600 transition-colors border border-gray-300 px-4 py-2 rounded-lg hover:border-blue-600"
+              >
+                <div className="flex items-center space-x-2">
+                  <img
+                    src={user?.avatar}
+                    alt={user?.name}
+                    className="h-6 w-6 rounded-full"
+                  />
+                  <span className="text-sm font-medium">{user?.name}</span>
+                </div>
+              </Link>
+            ) : (
+              <Link 
+                to="/login" 
+                className="flex items-center text-gray-700 hover:text-blue-600 transition-colors border border-gray-300 px-4 py-2 rounded-lg hover:border-blue-600"
+              >
+                <LogIn className="h-4 w-4 mr-2" />
+                Login
+              </Link>
+            )}
             <Link 
               to="/get-started" 
               className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
@@ -119,14 +137,31 @@ function Header() {
                 <Shield className="h-4 w-4 mr-1" />
                 Guarantee
               </Link>
-              <Link 
-                to="/login" 
-                className="flex items-center text-gray-700 hover:text-blue-600 transition-colors border border-gray-300 px-4 py-2 rounded-lg hover:border-blue-600"
-                onClick={closeMobileMenu}
-              >
-                <LogIn className="h-4 w-4 mr-2" />
-                Login
-              </Link>
+              {isAuthenticated ? (
+                <Link 
+                  to={`/dashboard/${user?.role}`}
+                  className="flex items-center text-gray-700 hover:text-blue-600 transition-colors border border-gray-300 px-4 py-2 rounded-lg hover:border-blue-600"
+                  onClick={closeMobileMenu}
+                >
+                  <div className="flex items-center space-x-2">
+                    <img
+                      src={user?.avatar}
+                      alt={user?.name}
+                      className="h-6 w-6 rounded-full"
+                    />
+                    <span className="text-sm font-medium">{user?.name}</span>
+                  </div>
+                </Link>
+              ) : (
+                <Link 
+                  to="/login" 
+                  className="flex items-center text-gray-700 hover:text-blue-600 transition-colors border border-gray-300 px-4 py-2 rounded-lg hover:border-blue-600"
+                  onClick={closeMobileMenu}
+                >
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Login
+                </Link>
+              )}
               <Link 
                 to="/get-started" 
                 className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center"
