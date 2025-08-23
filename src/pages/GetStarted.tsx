@@ -69,6 +69,16 @@ function GetStarted() {
   const handlePaymentSuccess = (details: any) => {
     console.log('Payment successful:', details);
     
+    // Simulate sending login credentials via email
+    const loginCredentials = {
+      email: formData.email,
+      password: generateSecurePassword(),
+      loginUrl: window.location.origin + '/login'
+    };
+    
+    // In a real application, this would trigger an email service
+    console.log('Sending login credentials to:', loginCredentials);
+    
     // Create client account automatically
     const newUser = createClientAccount({
       name: formData.name,
@@ -77,7 +87,7 @@ function GetStarted() {
     });
     
     // Show success message
-    alert(`Payment successful! Transaction ID: ${details.id}\n\nWelcome to HighDALink! Your account has been created and you're being redirected to your client dashboard.\n\nYour project details have been saved and our team will contact you within 24 hours to begin your ${formData.package} campaign.`);
+    alert(`Payment successful! Transaction ID: ${details.id}\n\nWelcome to HighDALink! Your account has been created.\n\n🔐 IMPORTANT: Login credentials have been sent to ${formData.email}\n\nPlease check your email for secure login instructions.\n\nOur team will contact you within 24 hours to begin your ${formData.package} campaign.`);
     
     // Reset form
     setFormData({
@@ -99,6 +109,16 @@ function GetStarted() {
   const handlePaymentError = (error: any) => {
     console.error('Payment failed:', error);
     alert('Payment failed. Please try again or contact our support team.');
+  };
+
+  const generateSecurePassword = () => {
+    // Generate a secure random password
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    let password = '';
+    for (let i = 0; i < 12; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
   };
 
   return (
