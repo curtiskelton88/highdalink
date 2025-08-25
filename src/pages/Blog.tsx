@@ -85,31 +85,35 @@ function Blog() {
                 <p className="text-gray-600 text-lg">No articles found matching your criteria.</p>
               </div>
             ) : (
-              <div className="grid lg:grid-cols-3 gap-8">
+              <>
                 {/* Featured Article */}
                 {filteredPosts.find(post => post.featured) && (
-                  <div className="lg:col-span-2">
-                    <FeaturedArticle post={filteredPosts.find(post => post.featured)!} />
+                  <div className="grid lg:grid-cols-3 gap-8 mb-16">
+                    <div className="lg:col-span-2">
+                      <FeaturedArticle post={filteredPosts.find(post => post.featured)!} />
+                    </div>
+                    
+                    {/* Sidebar */}
+                    <div className="space-y-8">
+                      <BlogSidebar posts={filteredPosts} />
+                    </div>
                   </div>
                 )}
 
-                {/* Sidebar */}
-                <div className="space-y-8">
-                  <BlogSidebar posts={filteredPosts} />
-                </div>
-              </div>
-            )}
-
-            {/* Regular Articles Grid */}
-            {filteredPosts.filter(post => !post.featured).length > 0 && (
-              <div className="mt-16">
-                <h2 className="text-2xl font-bold text-gray-900 mb-8">More Articles</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredPosts.filter(post => !post.featured).map((post) => (
-                    <ArticleCard key={post.id} post={post} />
-                  ))}
-                </div>
-              </div>
+                {/* Regular Articles Grid */}
+                {filteredPosts.filter(post => !post.featured).length > 0 && (
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-8">
+                      {filteredPosts.find(post => post.featured) ? 'More Articles' : 'Latest Articles'}
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {filteredPosts.filter(post => !post.featured).map((post) => (
+                        <ArticleCard key={post.id} post={post} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </section>
