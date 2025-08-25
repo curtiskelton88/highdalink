@@ -9,16 +9,6 @@ function Blog() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Sample blog posts - in a real app, this would come from a CMS or API
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'Achieving DR90+ Editorial Backlinks and SEO-Optimized Content: A Comprehensive Guide',
-      slug: 'achieving-dr90-editorial-backlinks-seo-guide',
-      excerpt: 'Learn the proven strategies for acquiring high-authority editorial backlinks from DR90+ domains and creating content that dominates search rankings.',
-      content: `# Achieving DR90+ Editorial Backlinks and SEO-Optimized Content: A Comprehensive Guide for High-Ranking Websites`
-    }
-  ];
   const publishedPosts = getPublishedPosts();
 
   const categories = ['all', 'SEO Strategy', 'Link Building', 'Content Marketing', 'Case Studies'];
@@ -105,7 +95,7 @@ function Blog() {
 
                 {/* Sidebar */}
                 <div className="space-y-8">
-                  <BlogSidebar />
+                  <BlogSidebar posts={filteredPosts} />
                 </div>
               </div>
             )}
@@ -161,7 +151,9 @@ function FeaturedArticle({ post }: { post: any }) {
         </div>
         
         <h2 className="text-2xl font-bold text-gray-900 mb-4 leading-tight">
-          {post.title}
+          <Link to={`/blog/${post.slug}`} className="hover:text-blue-600 transition-colors">
+            {post.title}
+          </Link>
         </h2>
         
         <p className="text-gray-600 mb-6 leading-relaxed">
@@ -211,7 +203,9 @@ function ArticleCard({ post }: { post: any }) {
         </div>
         
         <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight line-clamp-2">
-          {post.title}
+          <Link to={`/blog/${post.slug}`} className="hover:text-blue-600 transition-colors">
+            {post.title}
+          </Link>
         </h3>
         
         <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
@@ -236,9 +230,51 @@ function ArticleCard({ post }: { post: any }) {
   );
 }
 
-function BlogSidebar() {
+function BlogSidebar({ posts }: { posts: any[] }) {
   return (
     <div className="space-y-8">
+      {/* Related Articles */}
+      {posts.length > 1 && (
+        <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
+          <h3 className="text-lg font-bold text-gray-900 mb-4">Related Articles</h3>
+          <div className="space-y-4">
+            {posts.slice(0, 4).map((post) => (
+              <Link
+                key={post.id}
+                to={`/blog/${post.slug}`}
+                className="block group hover:bg-gray-50 p-3 rounded-lg transition-colors"
+              >
+                <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm line-clamp-2 mb-2">
+                  {post.title}
+                </h4>
+                <div className="flex items-center text-xs text-gray-500 space-x-3">
+                  <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
+                    {post.category}
+                  </span>
+                  <div className="flex items-center">
+                    <Calendar className="h-3 w-3 mr-1" />
+                    {post.publishDate}
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="h-3 w-3 mr-1" />
+                    {post.readTime}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4 pt-4 border-t border-gray-200">
+            <Link 
+              to="/blog" 
+              className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center"
+            >
+              View All Articles
+              <ArrowRight className="h-3 w-3 ml-1" />
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* Newsletter Signup */}
       <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 text-white">
         <h3 className="text-lg font-bold mb-3">Stay Updated</h3>
