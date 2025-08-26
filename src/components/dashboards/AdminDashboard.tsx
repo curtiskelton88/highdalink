@@ -865,10 +865,18 @@ function PaymentManagementTab() {
                   <td className="px-6 py-4 text-sm text-gray-900">{payment.articles}</td>
                   <td className="px-6 py-4 text-sm text-gray-600">{payment.paypal}</td>
                   <td className="px-6 py-4 text-sm text-gray-900">{payment.dueDate}</td>
-                  <td className="px-6 py-4">
+                  <div className="flex flex-col sm:flex-row gap-3 pt-4">
                     <button
+                      onClick={handlePublishNow}
+                      className="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-semibold flex items-center justify-center"
+                    >
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Publish Now
+                    </button>
+                    <button
+                      onClick={handleSaveAsDraft}
                       onClick={() => handleSendPayment(payment.id)}
-                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                      className="flex-1 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
                     >
                       Send Payment
                     </button>
@@ -1167,6 +1175,7 @@ function BlogManagementTab() {
   const { getAllPosts, createPost, updatePost, deletePost, publishPost, unpublishPost } = useBlog();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingPost, setEditingPost] = useState<any>(null);
+  const [uploadedImage, setUploadedImage] = useState<string>('');
   const [newPost, setNewPost] = useState({
     title: '',
     excerpt: '',
@@ -1176,7 +1185,7 @@ function BlogManagementTab() {
     image: '',
     featured: false
   });
-
+    status: 'draft' as 'published' | 'draft'
   const posts = getAllPosts();
 
   const handleCreatePost = () => {
@@ -1247,6 +1256,7 @@ function BlogManagementTab() {
 
   const handleEditPost = (post: any) => {
     setEditingPost(post);
+    setUploadedImage('');
     setNewPost({
       title: post.title,
       excerpt: post.excerpt,
@@ -1624,12 +1634,20 @@ function BlogPostForm({ initialData, onSubmit, onCancel }: {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Use uploaded image if available, otherwise use URL
+    const imageUrl = uploadedImage || newPost.image;
+    if (!imageUrl) {
+      alert('Please provide an image URL or upload an image');
+      image: imageUrl,
+      return;
+    }
     
     const postData = {
       ...formData,
       tags: formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
       slug: formData.slug || formData.title.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-')
     };
+    setUploadedImage('');
     
     onSubmit(postData);
   };
