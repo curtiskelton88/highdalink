@@ -80,12 +80,14 @@ function Header() {
                 Login
               </Link>
             )}
-            <Link 
-              to="/get-started" 
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Get Started
-            </Link>
+            {(!isAuthenticated || user?.role === 'client') && (
+              <Link 
+                to="/get-started" 
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Get Started
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -162,13 +164,15 @@ function Header() {
                   Login
                 </Link>
               )}
-              <Link 
-                to="/get-started" 
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center"
-                onClick={closeMobileMenu}
-              >
-                Get Started
-              </Link>
+              {(!isAuthenticated || user?.role === 'client') && (
+                <Link 
+                  to="/get-started" 
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors text-center"
+                  onClick={closeMobileMenu}
+                >
+                  Get Started
+                </Link>
+              )}
             </div>
           </div>
         )}
