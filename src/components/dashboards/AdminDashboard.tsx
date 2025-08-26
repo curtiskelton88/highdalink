@@ -8,7 +8,7 @@ import {
   BarChart3, Users, FileText, DollarSign, TrendingUp, 
   Eye, Edit, Trash2, Plus, Calendar, Award, AlertCircle,
   CheckCircle, Clock, UserCheck, CreditCard, MessageSquare,
-  Send, Reply, X, BookOpen, Image, Tag, Star
+  Send, Reply, X, BookOpen, Image, Tag, Star, Archive
 } from 'lucide-react';
 
 function AdminDashboard() {
@@ -1164,37 +1164,155 @@ function MessagesTab() {
 }
 
 function BlogManagementTab() {
-  const { posts, addPost, updatePost, deletePost } = useBlog();
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedPost, setSelectedPost] = useState<any>(null);
+  const { getAllPosts, createPost, updatePost, deletePost, publishPost, unpublishPost } = useBlog();
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [editingPost, setEditingPost] = useState<any>(null);
+  const [newPost, setNewPost] = useState({
+    title: '',
+    excerpt: '',
+    content: '',
+    category: 'SEO Strategy',
+    tags: '',
+    image: '',
+    featured: false
+  });
 
-  const handleAddPost = (postData: any) => {
-    addPost(postData);
-    setShowAddModal(false);
+  const posts = getAllPosts();
+
+  const handleCreatePost = () => {
+    try {
+      const postData = {
+        ...newPost,
+        author: 'HighDALink Team',
+        publishDate: new Date().toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        }),
+        image: newPost.image || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop',
+        status: 'draft' as const
+      };
+      
+      createPost(postData);
+      
+      setNewPost({
+        title: '',
+        excerpt: '',
+        content: '',
+        category: 'SEO Strategy',
+        tags: '',
+        image: '',
+        featured: false
+      });
+      setShowCreateModal(false);
+      alert('Post created as draft successfully!');
+    } catch (error) {
+      console.error('Error creating post:', error);
+      alert('Error creating post. Please try again.');
+    }
+  };
+
+  const handleSaveAndPublish = () => {
+    try {
+      const postData = {
+        ...newPost,
+        author: 'HighDALink Team',
+        publishDate: new Date().toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        }),
+        image: newPost.image || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop',
+        status: 'published' as const
+      };
+      
+      createPost(postData);
+      
+      setNewPost({
+        title: '',
+        excerpt: '',
+        content: '',
+        category: 'SEO Strategy',
+        tags: '',
+        image: '',
+        featured: false
+      });
+      setShowCreateModal(false);
+      alert('Post published successfully!');
+    } catch (error) {
+      console.error('Error publishing post:', error);
+      alert('Error publishing post. Please try again.');
+    }
   };
 
   const handleEditPost = (post: any) => {
-    setSelectedPost(post);
-    setShowEditModal(true);
+    setEditingPost(post);
+    setNewPost({
+      title: post.title,
+      excerpt: post.excerpt,
+      content: post.content,
+      category: post.category,
+      tags: Array.isArray(post.tags) ? post.tags.join(', ') : post.tags,
+      image: post.image,
+      featured: post.featured
+    });
+    setShowCreateModal(true);
   };
 
-  const handleUpdatePost = (postData: any) => {
-    if (selectedPost) {
-      updatePost(selectedPost.id, postData);
-      setShowEditModal(false);
-      setSelectedPost(null);
+  const handleUpdatePost = () => {
+    if (editingPost) {
+      try {
+        const updates = {
+          ...newPost,
+          tags: newPost.tags.split(',').map(tag => tag.trim()).filter(tag => tag)
+        };
+        
+        updatePost(editingPost.id, updates);
+        
+        setEditingPost(null);
+        setNewPost({
+          title: '',
+          excerpt: '',
+          content: '',
+          category: 'SEO Strategy',
+          tags: '',
+          image: '',
+          featured: false
+        });
+        setShowCreateModal(false);
+        alert('Post updated successfully!');
+      } catch (error) {
+        console.error('Error updating post:', error);
+        alert('Error updating post. Please try again.');
+      }
     }
   };
 
-  const handleDeletePost = (id: string) => {
-    if (confirm('Are you sure you want to delete this blog post?')) {
-      deletePost(id);
+  const handleDeletePost = (postId: string) => {
+    if (confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+      try {
+        deletePost(postId);
+        alert('Post deleted successfully!');
+      } catch (error) {
+        console.error('Error deleting post:', error);
+        alert('Error deleting post. Please try again.');
+      }
     }
   };
 
-  const togglePublished = (post: any) => {
-    updatePost(post.id, { published: !post.published });
+  const handleToggleStatus = (post: any) => {
+    try {
+      if (post.status === 'published') {
+        unpublishPost(post.id);
+        alert('Post moved to drafts!');
+      } else {
+        publishPost(post.id);
+        alert('Post published successfully!');
+      }
+    } catch (error) {
+      console.error('Error updating post status:', error);
+      alert('Error updating post status. Please try again.');
+    }
   };
 
   return (
@@ -1205,11 +1323,11 @@ function BlogManagementTab() {
           <p className="text-gray-600 mt-2">Create and manage blog articles</p>
         </div>
         <button 
-          onClick={() => setShowAddModal(true)}
+          onClick={() => setShowCreateModal(true)}
           className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
         >
           <Plus className="h-5 w-5 mr-2" />
-          New Article
+          Create Article
         </button>
       </div>
 
@@ -1228,7 +1346,7 @@ function BlogManagementTab() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100">Published</p>
-              <p className="text-3xl font-bold">{posts.filter(p => p.published).length}</p>
+              <p className="text-3xl font-bold">{posts.filter(p => p.status === 'published').length}</p>
             </div>
             <CheckCircle className="h-12 w-12 text-green-200" />
           </div>
@@ -1237,7 +1355,7 @@ function BlogManagementTab() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-100">Drafts</p>
-              <p className="text-3xl font-bold">{posts.filter(p => !p.published).length}</p>
+              <p className="text-3xl font-bold">{posts.filter(p => p.status === 'draft').length}</p>
             </div>
             <FileText className="h-12 w-12 text-orange-200" />
           </div>
@@ -1255,103 +1373,231 @@ function BlogManagementTab() {
 
       {/* Blog Posts Table */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Article</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Category</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Status</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Date</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {posts.map((post) => (
-              <tr key={post.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4">
-                  <div className="flex items-start space-x-3">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-16 h-12 object-cover rounded-lg"
-                    />
+        <div className="p-6 border-b border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900">All Articles ({posts.length})</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Title</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Category</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Status</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Updated</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {posts.map((post) => (
+                <tr key={post.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4">
                     <div>
-                      <div className="font-medium text-gray-900 line-clamp-2">{post.title}</div>
+                      <div className="font-medium text-gray-900">{post.title}</div>
                       <div className="text-sm text-gray-500">{post.readTime}</div>
                       {post.featured && (
                         <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800 mt-1">
-                          <Star className="h-3 w-3 mr-1" />
                           Featured
                         </span>
                       )}
                     </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-900">{post.category}</td>
-                <td className="px-6 py-4">
-                  <button
-                    onClick={() => togglePublished(post)}
-                    className={`px-3 py-1 text-xs rounded-full font-medium ${
-                      post.published 
-                        ? 'bg-green-100 text-green-800 hover:bg-green-200' 
-                        : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                    } transition-colors`}
-                  >
-                    {post.published ? 'Published' : 'Draft'}
-                  </button>
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-900">{post.publishDate}</td>
-                <td className="px-6 py-4">
-                  <div className="flex space-x-2">
-                    <button 
-                      onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
-                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
-                      disabled={!post.published}
-                    >
-                      <Eye className="h-4 w-4" />
-                    </button>
-                    <button 
-                      onClick={() => handleEditPost(post)}
-                      className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg"
-                    >
-                      <Edit className="h-4 w-4" />
-                    </button>
-                    <button 
-                      onClick={() => handleDeletePost(post.id)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-900">{post.category}</td>
+                  <td className="px-6 py-4">
+                    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                      post.status === 'published' 
+                        ? 'bg-green-100 text-green-800' 
+                        : 'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {post.status === 'published' ? 'Published' : 'Draft'}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-900">
+                    {new Date(post.updatedAt).toLocaleDateString()}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex space-x-1">
+                      <button
+                        onClick={() => handleEditPost(post)}
+                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        title="Edit"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => handleToggleStatus(post)}
+                        className={`p-2 rounded-lg transition-colors ${
+                          post.status === 'published'
+                            ? 'text-yellow-600 hover:bg-yellow-50'
+                            : 'text-green-600 hover:bg-green-50'
+                        }`}
+                        title={post.status === 'published' ? 'Move to Draft' : 'Publish'}
+                      >
+                        {post.status === 'published' ? <Archive className="h-4 w-4" /> : <CheckCircle className="h-4 w-4" />}
+                      </button>
+                      <button
+                        onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                        className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                        title="View"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeletePost(post.id)}
+                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        title="Delete"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      {/* Add Post Modal */}
+      {/* Create/Edit Modal */}
       <Modal
-        isOpen={showAddModal}
-        onClose={() => setShowAddModal(false)}
-        title="Create New Article"
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        title={editingPost ? "Edit Blog Post" : "Create New Blog Post"}
         maxWidth="max-w-4xl"
       >
-        <BlogPostForm onSubmit={handleAddPost} onCancel={() => setShowAddModal(false)} />
-      </Modal>
+        <div className="p-6 space-y-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
+              <input
+                type="text"
+                required
+                value={newPost.title}
+                onChange={(e) => setNewPost({...newPost, title: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter article title"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Category *</label>
+              <select
+                required
+                value={newPost.category}
+                onChange={(e) => setNewPost({...newPost, category: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="SEO Strategy">SEO Strategy</option>
+                <option value="Link Building">Link Building</option>
+                <option value="Content Marketing">Content Marketing</option>
+                <option value="Case Studies">Case Studies</option>
+                <option value="Digital PR">Digital PR</option>
+                <option value="Technical SEO">Technical SEO</option>
+              </select>
+            </div>
+          </div>
 
-      {/* Edit Post Modal */}
-      <Modal
-        isOpen={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        title="Edit Article"
-        maxWidth="max-w-4xl"
-      >
-        <BlogPostForm 
-          initialData={selectedPost}
-          onSubmit={handleUpdatePost} 
-          onCancel={() => setShowEditModal(false)} 
-        />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Excerpt *</label>
+            <textarea
+              required
+              value={newPost.excerpt}
+              onChange={(e) => setNewPost({...newPost, excerpt: e.target.value})}
+              rows={3}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="Brief description of the article"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Content * (Markdown supported)</label>
+            <textarea
+              required
+              value={newPost.content}
+              onChange={(e) => setNewPost({...newPost, content: e.target.value})}
+              rows={12}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+              placeholder="Write your article content here. Use markdown formatting (# for headings, ** for bold, etc.)"
+            />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Tags (comma-separated)</label>
+              <input
+                type="text"
+                value={newPost.tags}
+                onChange={(e) => setNewPost({...newPost, tags: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="SEO, Link Building, Content Marketing"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Featured Image URL</label>
+              <input
+                type="url"
+                value={newPost.image}
+                onChange={(e) => setNewPost({...newPost, image: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="https://example.com/image.jpg"
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center">
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                checked={newPost.featured}
+                onChange={(e) => setNewPost({...newPost, featured: e.target.checked})}
+                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span className="ml-2 text-sm text-gray-700">Featured Article</span>
+            </label>
+          </div>
+
+          <div className="flex space-x-3 pt-6 border-t border-gray-200 justify-end">
+            {editingPost ? (
+              <button
+                onClick={handleUpdatePost}
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+              >
+                Update Post
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={handleCreatePost}
+                  className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
+                >
+                  Save as Draft
+                </button>
+                <button
+                  onClick={handleSaveAndPublish}
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                >
+                  Save & Publish
+                </button>
+              </>
+            )}
+            <button
+              onClick={() => {
+                setShowCreateModal(false);
+                setEditingPost(null);
+                setNewPost({
+                  title: '',
+                  excerpt: '',
+                  content: '',
+                  category: 'SEO Strategy',
+                  tags: '',
+                  image: '',
+                  featured: false
+                });
+              }}
+              className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
       </Modal>
     </div>
   );
