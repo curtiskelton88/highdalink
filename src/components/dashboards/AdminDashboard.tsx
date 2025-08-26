@@ -865,18 +865,10 @@ function PaymentManagementTab() {
                   <td className="px-6 py-4 text-sm text-gray-900">{payment.articles}</td>
                   <td className="px-6 py-4 text-sm text-gray-600">{payment.paypal}</td>
                   <td className="px-6 py-4 text-sm text-gray-900">{payment.dueDate}</td>
-                  <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                  <td className="px-6 py-4">
                     <button
-                      onClick={handlePublishNow}
-                      className="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-semibold flex items-center justify-center"
-                    >
-                      <CheckCircle className="h-4 w-4 mr-2" />
-                      Publish Now
-                    </button>
-                    <button
-                      onClick={handleSaveAsDraft}
                       onClick={() => handleSendPayment(payment.id)}
-                      className="flex-1 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm"
                     >
                       Send Payment
                     </button>
@@ -1185,43 +1177,10 @@ function BlogManagementTab() {
     image: '',
     featured: false
   });
-    status: 'draft' as 'published' | 'draft'
+
   const posts = getAllPosts();
 
-  const handleCreatePost = () => {
-    try {
-      const postData = {
-        ...newPost,
-        author: 'HighDALink Team',
-        publishDate: new Date().toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        }),
-        image: newPost.image || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop',
-        status: 'draft' as const
-      };
-      
-      createPost(postData);
-      
-      setNewPost({
-        title: '',
-        excerpt: '',
-        content: '',
-        category: 'SEO Strategy',
-        tags: '',
-        image: '',
-        featured: false
-      });
-      setShowCreateModal(false);
-      alert('Post created as draft successfully!');
-    } catch (error) {
-      console.error('Error creating post:', error);
-      alert('Error creating post. Please try again.');
-    }
-  };
-
-  const handleSaveAndPublish = () => {
+  const handlePublishNow = () => {
     try {
       const postData = {
         ...newPost,
@@ -1251,6 +1210,39 @@ function BlogManagementTab() {
     } catch (error) {
       console.error('Error publishing post:', error);
       alert('Error publishing post. Please try again.');
+    }
+  };
+
+  const handleSaveAsDraft = () => {
+    try {
+      const postData = {
+        ...newPost,
+        author: 'HighDALink Team',
+        publishDate: new Date().toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        }),
+        image: newPost.image || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=400&fit=crop',
+        status: 'draft' as const
+      };
+      
+      createPost(postData);
+      
+      setNewPost({
+        title: '',
+        excerpt: '',
+        content: '',
+        category: 'SEO Strategy',
+        tags: '',
+        image: '',
+        featured: false
+      });
+      setShowCreateModal(false);
+      alert('Post created as draft successfully!');
+    } catch (error) {
+      console.error('Error creating post:', error);
+      alert('Error creating post. Please try again.');
     }
   };
 
@@ -1564,7 +1556,7 @@ function BlogManagementTab() {
             </label>
           </div>
 
-          <div className="flex space-x-3 pt-6 border-t border-gray-200 justify-end">
+          <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200 justify-end">
             {editingPost ? (
               <button
                 onClick={handleUpdatePost}
@@ -1575,16 +1567,17 @@ function BlogManagementTab() {
             ) : (
               <>
                 <button
-                  onClick={handleCreatePost}
-                  className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
+                  onClick={handlePublishNow}
+                  className="flex-1 bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 transition-colors font-semibold flex items-center justify-center"
                 >
-                  Save as Draft
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Publish Now
                 </button>
                 <button
-                  onClick={handleSaveAndPublish}
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                  onClick={handleSaveAsDraft}
+                  className="flex-1 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
                 >
-                  Save & Publish
+                  Save as Draft
                 </button>
               </>
             )}
@@ -1634,20 +1627,12 @@ function BlogPostForm({ initialData, onSubmit, onCancel }: {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Use uploaded image if available, otherwise use URL
-    const imageUrl = uploadedImage || newPost.image;
-    if (!imageUrl) {
-      alert('Please provide an image URL or upload an image');
-      image: imageUrl,
-      return;
-    }
     
     const postData = {
       ...formData,
       tags: formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
       slug: formData.slug || formData.title.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-')
     };
-    setUploadedImage('');
     
     onSubmit(postData);
   };
