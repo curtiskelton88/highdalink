@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, DollarSign, Calculator, BarChart3, ArrowRight, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEOHead from '../components/SEOHead';
 import { trackROICalculatorUsage } from '../utils/analytics';
 
 function ROICalculator() {
@@ -74,6 +75,12 @@ function ROICalculator() {
   };
 
   return (
+    <>
+      <SEOHead 
+        title="ROI Calculator - Link Building Investment Returns | HighDALink"
+        description="Calculate your ROI from DR90+ DA90+ editorial backlinks. See potential traffic growth, ranking improvements, and revenue increases from elite link building campaigns."
+        keywords="link building ROI calculator, DR90+ backlinks ROI, editorial backlinks calculator, SEO investment calculator, link building returns, backlink ROI tool, SEO ROI calculator"
+      />
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -320,6 +327,7 @@ function ROICalculator() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 

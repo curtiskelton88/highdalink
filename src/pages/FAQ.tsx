@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
+import SEOHead from '../components/SEOHead';
 
 function FAQ() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -53,6 +54,12 @@ function FAQ() {
   ];
 
   return (
+    <>
+      <SEOHead 
+        title="FAQ - Elite Link Building Questions | HighDALink"
+        description="Frequently asked questions about DR90+ DA90+ editorial backlinks, elite link building services, pricing, guarantees, and delivery times. Get answers from experts."
+        keywords="link building FAQ, DR90+ editorial backlinks questions, elite backlink service FAQ, premium link building questions, high authority backlinks FAQ, SEO link building help, editorial backlinks FAQ"
+      />
     <section className="py-20 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -95,6 +102,7 @@ function FAQ() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 

@@ -24,7 +24,7 @@ function Blog() {
     <>
       <SEOHead 
         title="Blog - Expert Insights on Link Building & SEO | HighDALink"
-        description="Expert insights, strategies, and case studies on DR90+ editorial backlinks, SEO, and digital marketing from the HighDALink team."
+        description="Expert insights, strategies, and case studies on DR90+ DA90+ editorial backlinks, SEO, and digital marketing from the HighDALink team. Latest link building trends and tips."
         keywords="SEO blog, link building strategies, editorial backlinks, digital marketing insights, SEO tips, content marketing"
       />
       
