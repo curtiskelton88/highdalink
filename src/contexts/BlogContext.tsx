@@ -649,6 +649,9 @@ Ready to dominate SERPs with professional [link building services](https://curti
       createdAt: '2025-01-28T10:00:00Z',
       updatedAt: '2025-01-28T10:00:00Z'
     }
+  ]);
+
+  const getPublishedPosts = () => {
     },
     {
       id: '8',
