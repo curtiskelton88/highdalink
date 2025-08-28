@@ -101,18 +101,43 @@ function Blog() {
                 )}
 
                 {/* Regular Articles Grid */}
-                {filteredPosts.filter(post => !post.featured).length > 0 && (
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">
+                    {filteredPosts.find(post => post.featured) ? 'More Articles' : 'Latest Articles'}
+                  </h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {filteredPosts.filter(post => !post.featured).map((post) => (
+                      <ArticleCard key={post.id} post={post} />
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Show all articles if no featured article */}
+            {!filteredPosts.find(post => post.featured) && filteredPosts.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-8">Latest Articles</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {filteredPosts.map((post) => (
+                    <ArticleCard key={post.id} post={post} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Show featured article section only if there are featured articles */}
+            {filteredPosts.find(post => post.featured) && (
+              <>
+                {/* Featured Article */}
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-8">
-                      {filteredPosts.find(post => post.featured) ? 'More Articles' : 'Latest Articles'}
-                    </h2>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-8">All Articles</h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {filteredPosts.filter(post => !post.featured).map((post) => (
+                      {filteredPosts.map((post) => (
                         <ArticleCard key={post.id} post={post} />
                       ))}
                     </div>
                   </div>
-                )}
               </>
             )}
           </div>
