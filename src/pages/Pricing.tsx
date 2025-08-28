@@ -20,7 +20,7 @@ function Pricing() {
     <>
       <SEOHead 
         title="Elite Link Building Pricing - DR90+ Editorial Backlinks"
-        description="Transparent pricing for elite DR90+ editorial backlinks. Elite One ($600), Authority Pro ($1,100), Agency Monthly ($2,000). 30-day guarantee."
+        description="Transparent pricing for elite DR90+ DA90+ editorial backlinks. Elite One ($600), Authority Pro ($1,100), Agency Monthly ($2,000). 30-day money-back guarantee."
         keywords="elite link building pricing, DR90+ editorial backlinks cost, DA90+ editorial backlinks pricing, premium link building services pricing, top 1% link building provider pricing, high authority backlinks price, elite backlink building services cost, professional link building pricing, enterprise link building pricing, premium SEO services pricing, 90+ domain rating backlinks cost, 90+ domain authority backlinks pricing, quality link building services pricing, expert link building cost, advanced SEO link building pricing"
       />
     <section className="py-20 bg-gray-50">

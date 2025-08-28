@@ -30,6 +30,12 @@ function Contact() {
   };
 
   return (
+    <>
+      <SEOHead 
+        title="Contact HighDALink - Elite Link Building Support"
+        description="Contact our elite link building experts. Get support for DR90+ DA90+ editorial backlinks, pricing questions, and custom campaigns. 24-hour response guaranteed."
+        keywords="contact link building service, elite backlink support, DR90+ editorial backlinks contact, premium link building support, high authority backlinks help, professional SEO support, link building consultation, enterprise link building contact"
+      />
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -281,6 +287,7 @@ function Contact() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 

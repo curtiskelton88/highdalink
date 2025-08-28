@@ -6,158 +6,22 @@ interface SEOHeadProps {
   description?: string;
   keywords?: string;
   ogImage?: string;
+  canonical?: string;
+  noindex?: boolean;
 }
 
 function SEOHead({ 
   title = "HighDALink - Elite DR90+ Editorial Backlinks | Top 1%",
-  description = "Top 1% provider of elite DR90+ editorial backlinks. Premium high authority link building services, white hat SEO. Trusted by Fortune 500 companies.",
+  description = "Top 1% provider of elite DR90+ DA90+ editorial backlinks. Premium high authority link building services trusted by Fortune 500 companies. White hat SEO with 30-day guarantee.",
   keywords = "DR90+ editorial backlinks, DA90+ editorial backlinks, elite backlink building services, high authority link building, premium link building services, top 1% link building provider, 90+ domain rating backlinks, 90+ domain authority backlinks, white hat link building, organic editorial backlinks, premium SEO services, high quality backlinks, authority link building, editorial link placement, top tier backlinks, elite SEO services, professional link building, enterprise link building, Fortune 500 link building, premium editorial links, high DR backlinks, high DA backlinks, quality link building services, expert link building, advanced SEO link building, premium domain authority links, elite editorial placements, top quality backlinks, professional SEO services, enterprise SEO solutions",
-  ogImage = "/og-image.jpg"
+  ogImage = "https://curtiskelton88-highd-jpim.bolt.host/og-image.jpg",
+  canonical,
+  noindex = false
 }: SEOHeadProps) {
   const location = useLocation();
-  const currentUrl = `https://curtiskelton88-highd-jpim.bolt.host${location.pathname}`;
+  const currentUrl = canonical || `https://curtiskelton88-highd-jpim.bolt.host${location.pathname}`;
 
-  // Enhanced schema markup for the organization
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "HighDALink",
-    "alternateName": "High DA Link",
-    "description": "Top 1% provider of elite DR90+ DA90+ editorial backlinks and premium high authority link building services",
-    "url": "https://curtiskelton88-highd-jpim.bolt.host",
-    "logo": "https://curtiskelton88-highd-jpim.bolt.host/logo.png",
-    "foundingDate": "2020",
-    "slogan": "Elite DR90+ Editorial Backlinks - Top 1% Link Building Provider",
-    "knowsAbout": [
-      "DR90+ Editorial Backlinks",
-      "DA90+ Editorial Backlinks", 
-      "Elite Backlink Building Services",
-      "High Authority Link Building",
-      "Premium Link Building Services",
-      "White Hat SEO",
-      "Organic Editorial Backlinks",
-      "Premium SEO Services",
-      "Enterprise Link Building",
-      "Professional SEO Services"
-    ],
-    "serviceArea": {
-      "@type": "Place",
-      "name": "Worldwide"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+1-555-0123",
-      "contactType": "customer service",
-      "email": "support@highdaLink.com",
-      "availableLanguage": ["English"]
-    },
-    "sameAs": [
-      "https://twitter.com/highdaLink",
-      "https://linkedin.com/company/highdaLink"
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "247",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "award": "Top 1% Link Building Provider Worldwide"
-  };
-
-  // Enhanced service schema markup
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Elite DR90+ DA90+ Editorial Backlink Building Services",
-    "description": "Premium high authority editorial backlinks from 90+ domain rating and domain authority sites. Top 1% provider of elite link building services with white hat SEO strategies.",
-    "provider": {
-      "@type": "Organization",
-      "name": "HighDALink",
-      "description": "Top 1% provider of elite backlink building services"
-    },
-    "serviceType": [
-      "DR90+ Editorial Backlinks",
-      "DA90+ Editorial Backlinks", 
-      "Elite Link Building Services",
-      "High Authority Link Building",
-      "Premium SEO Services",
-      "White Hat Link Building",
-      "Organic Editorial Backlinks",
-      "Professional Link Building",
-      "Enterprise Link Building Solutions"
-    ],
-    "category": [
-      "SEO Services",
-      "Digital Marketing",
-      "Link Building",
-      "Content Marketing",
-      "Search Engine Optimization"
-    ],
-    "areaServed": "Worldwide",
-    "audience": {
-      "@type": "Audience",
-      "audienceType": [
-        "Fortune 500 Companies",
-        "Digital Marketing Agencies", 
-        "E-commerce Businesses",
-        "SaaS Companies",
-        "Enterprise Businesses",
-        "Professional Services"
-      ]
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Elite Link Building Packages",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Elite One Package - DR90+ Editorial Backlinks",
-            "description": "1 DR90+ editorial backlink with 1500-word SEO article by elite writer"
-          },
-          "price": "600",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "validFrom": "2024-01-01"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Authority Pro Package - DA90+ Editorial Backlinks",
-            "description": "2 DR90+ DA90+ editorial backlinks with premium SEO articles and spam audit"
-          },
-          "price": "1100",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "validFrom": "2024-01-01"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Agency Monthly Package - Elite Link Building Services",
-            "description": "4 DR90+ editorial backlinks monthly with Slack support and performance reporting"
-          },
-          "price": "2000",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "validFrom": "2024-01-01"
-        }
-      ]
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "lowPrice": "600",
-      "highPrice": "2000",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
-    }
-  };
-
-  // FAQ Schema for common questions
+  // FAQ Schema for pages with FAQs
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -215,6 +79,17 @@ function SEOHead({
       document.head.appendChild(metaKeywords);
     }
 
+    // Update robots meta tag
+    let robotsMeta = document.querySelector('meta[name="robots"]');
+    if (robotsMeta) {
+      robotsMeta.setAttribute('content', noindex ? 'noindex, nofollow' : 'index, follow');
+    } else {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.setAttribute('name', 'robots');
+      robotsMeta.setAttribute('content', noindex ? 'noindex, nofollow' : 'index, follow');
+      document.head.appendChild(robotsMeta);
+    }
+
     // Add canonical link
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
@@ -233,6 +108,8 @@ function SEOHead({
       { property: 'og:url', content: currentUrl },
       { property: 'og:type', content: 'website' },
       { property: 'og:image', content: ogImage },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
       { property: 'og:site_name', content: 'HighDALink - Elite DR90+ DA90+ Editorial Backlinks' },
       { property: 'og:locale', content: 'en_US' }
     ];
@@ -271,38 +148,18 @@ function SEOHead({
       }
     });
 
-    // Add JSON-LD schema markup
-    let organizationScript = document.querySelector('#organization-schema');
-    if (organizationScript) {
-      organizationScript.textContent = JSON.stringify(organizationSchema);
-    } else {
-      organizationScript = document.createElement('script');
-      organizationScript.id = 'organization-schema';
-      organizationScript.type = 'application/ld+json';
-      organizationScript.textContent = JSON.stringify(organizationSchema);
-      document.head.appendChild(organizationScript);
-    }
-
-    let serviceScript = document.querySelector('#service-schema');
-    if (serviceScript) {
-      serviceScript.textContent = JSON.stringify(serviceSchema);
-    } else {
-      serviceScript = document.createElement('script');
-      serviceScript.id = 'service-schema';
-      serviceScript.type = 'application/ld+json';
-      serviceScript.textContent = JSON.stringify(serviceSchema);
-      document.head.appendChild(serviceScript);
-    }
-
-    let faqScript = document.querySelector('#faq-schema');
-    if (faqScript) {
-      faqScript.textContent = JSON.stringify(faqSchema);
-    } else {
-      faqScript = document.createElement('script');
-      faqScript.id = 'faq-schema';
-      faqScript.type = 'application/ld+json';
-      faqScript.textContent = JSON.stringify(faqSchema);
-      document.head.appendChild(faqScript);
+    // Add FAQ schema only for FAQ pages
+    if (location.pathname === '/faq') {
+      let faqScript = document.querySelector('#faq-schema');
+      if (faqScript) {
+        faqScript.textContent = JSON.stringify(faqSchema);
+      } else {
+        faqScript = document.createElement('script');
+        faqScript.id = 'faq-schema';
+        faqScript.type = 'application/ld+json';
+        faqScript.textContent = JSON.stringify(faqSchema);
+        document.head.appendChild(faqScript);
+      }
     }
 
     // Cleanup function
@@ -311,7 +168,7 @@ function SEOHead({
       const dynamicTags = document.querySelectorAll('meta[data-dynamic="true"]');
       dynamicTags.forEach(tag => tag.remove());
     };
-  }, [title, description, keywords, currentUrl, ogImage]);
+  }, [title, description, keywords, currentUrl, ogImage, noindex, location.pathname]);
 
   return null;
 }
