@@ -146,24 +146,9 @@ function DashboardTab() {
     alert('Redirecting to upgrade options...');
   };
 
-  // Sample data for charts
-  const trafficData = [
-    { label: 'Jan', value: 15200 },
-    { label: 'Feb', value: 18400 },
-    { label: 'Mar', value: 22100 },
-    { label: 'Apr', value: 26800 },
-    { label: 'May', value: 31500 },
-    { label: 'Jun', value: 35200 }
-  ];
-
-  const rankingData = [
-    { label: 'Week 1', value: 25 },
-    { label: 'Week 2', value: 22 },
-    { label: 'Week 3', value: 18 },
-    { label: 'Week 4', value: 15 },
-    { label: 'Week 5', value: 12 },
-    { label: 'Week 6', value: 8 }
-  ];
+  // Check if user has any delivered links
+  const hasDeliveredLinks = false; // This would be determined by actual data
+  const hasActiveProjects = false; // This would be determined by actual data
 
   return (
     <div>
@@ -281,13 +266,13 @@ function DashboardTab() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100">Total Links</p>
-              <p className="text-3xl font-bold">47</p>
+              <p className="text-3xl font-bold">0</p>
             </div>
             <Link2 className="h-12 w-12 text-blue-200" />
           </div>
           <div className="flex items-center mt-4 text-blue-100">
-            <TrendingUp className="h-4 w-4 mr-1" />
-            <span className="text-sm">+12 this month</span>
+            <Clock className="h-4 w-4 mr-1" />
+            <span className="text-sm">Campaign starting soon</span>
           </div>
         </div>
 
@@ -295,13 +280,13 @@ function DashboardTab() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100">Avg Domain Rating</p>
-              <p className="text-3xl font-bold">DR92</p>
+              <p className="text-3xl font-bold">DR90+</p>
             </div>
             <Award className="h-12 w-12 text-green-200" />
           </div>
           <div className="flex items-center mt-4 text-green-100">
             <Star className="h-4 w-4 mr-1" />
-            <span className="text-sm">Premium quality</span>
+            <span className="text-sm">Premium quality guaranteed</span>
           </div>
         </div>
 
@@ -309,13 +294,13 @@ function DashboardTab() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-orange-100">Active Projects</p>
-              <p className="text-3xl font-bold">3</p>
+              <p className="text-3xl font-bold">1</p>
             </div>
             <FileText className="h-12 w-12 text-orange-200" />
           </div>
           <div className="flex items-center mt-4 text-orange-100">
             <Clock className="h-4 w-4 mr-1" />
-            <span className="text-sm">2 in progress</span>
+            <span className="text-sm">Starting soon</span>
           </div>
         </div>
 
@@ -323,75 +308,58 @@ function DashboardTab() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100">Investment</p>
-              <p className="text-3xl font-bold">$8.2K</p>
+              <p className="text-3xl font-bold">{currentPackage.price}</p>
             </div>
             <TrendingUp className="h-12 w-12 text-purple-200" />
           </div>
           <div className="flex items-center mt-4 text-purple-100">
-            <CheckCircle className="h-4 w-4 mr-1" />
-            <span className="text-sm">ROI positive</span>
+            <Clock className="h-4 w-4 mr-1" />
+            <span className="text-sm">ROI tracking starts after delivery</span>
           </div>
         </div>
       </div>
 
-      {/* Charts */}
-      <div className="grid lg:grid-cols-2 gap-8 mb-8">
-        <AdvancedChart
-          title="Organic Traffic Growth"
-          data={trafficData}
-          type="line"
-          showTrend={true}
-        />
-        <AdvancedChart
-          title="Average Ranking Position"
-          data={rankingData}
-          type="line"
-          showTrend={true}
-        />
-      </div>
+      {/* Charts - Show only when data is available */}
+      {hasDeliveredLinks && (
+        <div className="grid lg:grid-cols-2 gap-8 mb-8">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Traffic Analytics</h3>
+            <p className="text-gray-500">Analytics will appear here after your first links are delivered and indexed by search engines.</p>
+          </div>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 text-center">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Ranking Progress</h3>
+            <p className="text-gray-500">Ranking data will be available 2-4 weeks after link delivery.</p>
+          </div>
+        </div>
+      )}
 
       {/* Recent Activity */}
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Links Delivered</h3>
-          <div className="space-y-4">
-            {[
-              { domain: 'techcrunch.com', dr: 94, date: '2024-01-28', article: 'Future of SaaS Technology' },
-              { domain: 'entrepreneur.com', dr: 91, date: '2024-01-25', article: 'Startup Growth Strategies' },
-              { domain: 'inc.com', dr: 93, date: '2024-01-22', article: 'Digital Marketing Trends' },
-            ].map((link, index) => (
-              <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                <div>
-                  <div className="font-medium text-gray-900">{link.domain}</div>
-                  <div className="text-sm text-gray-600">{link.article}</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm font-medium text-blue-600">DR{link.dr}</div>
-                  <div className="text-xs text-gray-500">{link.date}</div>
-                </div>
-              </div>
-            ))}
+          <div className="text-center py-12">
+            <Link2 className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+            <h4 className="text-lg font-medium text-gray-900 mb-2">No Links Delivered Yet</h4>
+            <p className="text-gray-500 mb-4">Your DR90+ editorial backlinks will appear here once delivered.</p>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-sm mx-auto">
+              <p className="text-sm text-blue-800">
+                <strong>Expected Timeline:</strong> 7-14 days from project start
+              </p>
+            </div>
           </div>
         </div>
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Updates</h3>
-          <div className="space-y-3">
-            {[
-              { type: 'success', message: 'Authority Pro package completed', time: '2 hours ago' },
-              { type: 'info', message: 'New article published on Forbes.com', time: '1 day ago' },
-              { type: 'warning', message: 'Awaiting content approval', time: '2 days ago' },
-            ].map((update, index) => (
-              <div key={index} className="flex items-start space-x-3 p-3 rounded-lg bg-gray-50">
-                {update.type === 'success' && <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />}
-                {update.type === 'info' && <FileText className="h-5 w-5 text-blue-500 mt-0.5" />}
-                {update.type === 'warning' && <Clock className="h-5 w-5 text-orange-500 mt-0.5" />}
-                <div className="flex-1">
-                  <p className="text-sm text-gray-900">{update.message}</p>
-                  <p className="text-xs text-gray-500">{update.time}</p>
-                </div>
-              </div>
-            ))}
+          <div className="text-center py-12">
+            <Clock className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+            <h4 className="text-lg font-medium text-gray-900 mb-2">Project Starting Soon</h4>
+            <p className="text-gray-500 mb-4">Updates will appear here as your campaign progresses.</p>
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 max-w-sm mx-auto">
+              <p className="text-sm text-green-800">
+                <strong>Next Step:</strong> Our team will contact you within 24 hours
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -403,77 +371,53 @@ function ProjectsTab() {
   const [projects] = useState([
     { 
       id: 1, 
-      name: 'Q1 Authority Building', 
+      name: 'Authority Building Campaign', 
       package: 'Authority Pro', 
-      status: 'In Progress', 
-      progress: 75, 
-      links: 2, 
-      totalLinks: 3,
-      startDate: '2024-01-15',
-      deadline: '2024-02-15'
-    },
-    { 
-      id: 2, 
-      name: 'Brand Awareness Campaign', 
-      package: 'Enterprise Max', 
-      status: 'Completed', 
-      progress: 100, 
-      links: 5, 
-      totalLinks: 5,
-      startDate: '2023-12-01',
-      deadline: '2024-01-01'
-    },
-    { 
-      id: 3, 
-      name: 'Product Launch Support', 
-      package: 'Elite One', 
-      status: 'Review', 
-      progress: 90, 
-      links: 1, 
-      totalLinks: 1,
-      startDate: '2024-01-20',
-      deadline: '2024-02-10'
-    },
+      status: 'Pending Start', 
+      progress: 0, 
+      links: 0, 
+      totalLinks: 2,
+      startDate: 'TBD',
+      deadline: 'TBD'
+    }
   ]);
 
   const generateReport = (projectId: number) => {
-    alert(`Generating detailed report for project ${projectId}...`);
+    alert('Reports will be available after project completion.');
   };
 
-  // Sample milestone data
+  // Initial milestone data for new projects
   const sampleMilestones = [
     {
       id: '1',
       title: 'Project Kickoff',
-      description: 'Initial briefing and strategy discussion completed',
-      status: 'completed' as const,
-      date: '2024-01-15',
-      assignee: 'Sarah Johnson',
-      notes: 'All requirements documented and approved by client'
+      description: 'Initial briefing and strategy discussion',
+      status: 'pending' as const,
+      date: 'TBD',
+      assignee: 'Account Manager'
     },
     {
       id: '2',
       title: 'Content Creation',
-      description: 'Elite writers working on high-quality articles',
-      status: 'in-progress' as const,
-      date: '2024-01-22',
-      assignee: 'Mike Chen',
-      notes: 'First draft completed, undergoing editorial review'
+      description: 'Elite writers create high-quality articles',
+      status: 'pending' as const,
+      date: 'TBD',
+      assignee: 'Elite Writer Team'
     },
     {
       id: '3',
       title: 'Publication Outreach',
       description: 'Securing placements on DR90+ publications',
       status: 'pending' as const,
-      date: '2024-02-05',
-      assignee: 'Emma Wilson'
+      date: 'TBD',
+      assignee: 'Outreach Team'
     },
     {
       id: '4',
       title: 'Link Delivery',
       description: 'Final links delivered with comprehensive reporting',
       status: 'pending' as const,
-      date: '2024-02-15',
+      date: 'TBD',
       assignee: 'Admin Team'
     }
   ];
@@ -516,7 +460,7 @@ function ProjectsTab() {
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3">
                   <div className="text-sm text-gray-600">Started</div>
-                  <div className="text-xl font-bold text-gray-900">{project.startDate}</div>
+                  <div className="text-xl font-bold text-gray-900">{project.startDate === 'TBD' ? 'Starting Soon' : project.startDate}</div>
                 </div>
               </div>
 
@@ -550,7 +494,7 @@ function ProjectsTab() {
                 projectId={project.id.toString()}
                 milestones={sampleMilestones}
                 completionPercentage={project.progress}
-                estimatedCompletion={project.deadline}
+                estimatedCompletion="7-14 days from project start"
               />
             )}
           </div>
@@ -561,12 +505,7 @@ function ProjectsTab() {
 }
 
 function LinksTab() {
-  const links = [
-    { domain: 'techcrunch.com', dr: 94, da: 95, article: 'Future of SaaS Technology', date: '2024-01-28', status: 'Live' },
-    { domain: 'entrepreneur.com', dr: 91, da: 92, article: 'Startup Growth Strategies', date: '2024-01-25', status: 'Live' },
-    { domain: 'inc.com', dr: 93, da: 94, article: 'Digital Marketing Trends', date: '2024-01-22', status: 'Live' },
-    { domain: 'forbes.com', dr: 95, da: 96, article: 'Industry Innovation Report', date: '2024-01-18', status: 'Live' },
-  ];
+  const links: any[] = []; // Empty array for new clients
 
   return (
     <div>
@@ -575,46 +514,67 @@ function LinksTab() {
         <p className="text-gray-600 mt-2">All your high-authority backlinks</p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Domain</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">DR/DA</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Article Title</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Date</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Status</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {links.map((link, index) => (
-              <tr key={index} className="hover:bg-gray-50">
-                <td className="px-6 py-4">
-                  <div className="font-medium text-gray-900">{link.domain}</div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="text-sm text-gray-900">
-                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-1">DR{link.dr}</span>
-                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded">DA{link.da}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">{link.article}</td>
-                <td className="px-6 py-4 text-sm text-gray-900">{link.date}</td>
-                <td className="px-6 py-4">
-                  <span className="px-3 py-1 text-xs rounded-full bg-green-100 text-green-800">
-                    {link.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
-                    <Eye className="h-4 w-4" />
-                  </button>
-                </td>
+      {links.length === 0 ? (
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
+          <Link2 className="h-16 w-16 text-gray-300 mx-auto mb-6" />
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">No Links Delivered Yet</h3>
+          <p className="text-gray-600 mb-6 max-w-md mx-auto">
+            Your DR90+ editorial backlinks will appear here once they're delivered. Each link will include detailed metrics and verification.
+          </p>
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 max-w-lg mx-auto">
+            <h4 className="font-semibold text-blue-900 mb-2">What to Expect:</h4>
+            <ul className="text-sm text-blue-800 space-y-1 text-left">
+              <li>• Domain Rating 90+ publications</li>
+              <li>• Editorial placements by verified writers</li>
+              <li>• Live link verification</li>
+              <li>• Comprehensive reporting</li>
+              <li>• Delivery within 7-14 days</li>
+            </ul>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Domain</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">DR/DA</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Article Title</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Date</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Status</th>
+                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {links.map((link, index) => (
+                <tr key={index} className="hover:bg-gray-50">
+                  <td className="px-6 py-4">
+                    <div className="font-medium text-gray-900">{link.domain}</div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-gray-900">
+                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-1">DR{link.dr}</span>
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded">DA{link.da}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">{link.article}</td>
+                  <td className="px-6 py-4 text-sm text-gray-900">{link.date}</td>
+                  <td className="px-6 py-4">
+                    <span className="px-3 py-1 text-xs rounded-full bg-green-100 text-green-800">
+                      {link.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
+                      <Eye className="h-4 w-4" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       </div>
     </div>
   );
@@ -622,25 +582,10 @@ function LinksTab() {
 
 function AnalyticsTab() {
   const generateReport = () => {
-    alert('Generating comprehensive analytics report...');
+    alert('Analytics reports will be available after your first links are delivered and indexed.');
   };
 
-  // Sample data for analytics charts
-  const domainAuthorityData = [
-    { label: 'Jan', value: 45 },
-    { label: 'Feb', value: 52 },
-    { label: 'Mar', value: 58 },
-    { label: 'Apr', value: 65 },
-    { label: 'May', value: 71 },
-    { label: 'Jun', value: 78 }
-  ];
-
-  const keywordRankingsData = [
-    { label: 'Top 3', value: 12, color: 'bg-green-500' },
-    { label: 'Top 10', value: 23, color: 'bg-blue-500' },
-    { label: 'Top 20', value: 18, color: 'bg-orange-500' },
-    { label: '20+', value: 7, color: 'bg-red-500' }
-  ];
+  const hasAnalyticsData = false; // This would be determined by actual delivered links
 
   return (
     <div>
@@ -651,70 +596,59 @@ function AnalyticsTab() {
         </div>
         <button 
           onClick={generateReport}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+          className="bg-gray-300 text-gray-500 px-6 py-3 rounded-lg cursor-not-allowed"
+          disabled
         >
           Generate Report
         </button>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl text-white">
-          <h3 className="text-blue-100">Domain Authority Growth</h3>
-          <p className="text-3xl font-bold">+12 DA</p>
-          <p className="text-blue-100 text-sm mt-2">Since campaign start</p>
-        </div>
-        <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl text-white">
-          <h3 className="text-green-100">Organic Traffic</h3>
-          <p className="text-3xl font-bold">+47%</p>
-          <p className="text-green-100 text-sm mt-2">3-month improvement</p>
-        </div>
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-2xl text-white">
-          <h3 className="text-purple-100">Keyword Rankings</h3>
-          <p className="text-3xl font-bold">+23</p>
-          <p className="text-purple-100 text-sm mt-2">Top 10 positions</p>
-        </div>
-      </div>
-
-      <div className="grid lg:grid-cols-2 gap-8 mb-8">
-        <AdvancedChart
-          title="Domain Authority Progress"
-          data={domainAuthorityData}
-          type="line"
-          showTrend={true}
-        />
-        <AdvancedChart
-          title="Keyword Rankings Distribution"
-          data={keywordRankingsData}
-          type="pie"
-        />
-      </div>
-
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Link Quality Distribution</h3>
-        <div className="space-y-4">
-          {[
-            { range: 'DR 90-100', count: 15, percentage: 45, color: 'bg-green-500' },
-            { range: 'DR 80-89', count: 12, percentage: 36, color: 'bg-blue-500' },
-            { range: 'DR 70-79', count: 6, percentage: 18, color: 'bg-orange-500' },
-          ].map((item, index) => (
-            <div key={index} className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className={`w-4 h-4 rounded ${item.color}`}></div>
-                <span className="font-medium text-gray-900">{item.range}</span>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-32 bg-gray-200 rounded-full h-2">
-                  <div 
-                    className={`h-2 rounded-full ${item.color}`}
-                    style={{ width: `${item.percentage}%` }}
-                  ></div>
-                </div>
-                <span className="font-semibold text-gray-900 w-8 text-right">{item.count}</span>
-              </div>
+      {!hasAnalyticsData ? (
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 text-center">
+          <BarChart3 className="h-16 w-16 text-gray-300 mx-auto mb-6" />
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Analytics Coming Soon</h3>
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Your performance analytics will be available 2-4 weeks after your first DR90+ editorial backlinks are delivered and indexed by search engines.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+              <TrendingUp className="h-8 w-8 text-blue-600 mx-auto mb-3" />
+              <h4 className="font-semibold text-blue-900 mb-2">Traffic Growth</h4>
+              <p className="text-sm text-blue-800">Monitor organic traffic increases from your new backlinks</p>
             </div>
-          ))}
+            <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+              <Award className="h-8 w-8 text-green-600 mx-auto mb-3" />
+              <h4 className="font-semibold text-green-900 mb-2">Domain Authority</h4>
+              <p className="text-sm text-green-800">Track your domain authority improvements over time</p>
+            </div>
+            <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
+              <BarChart3 className="h-8 w-8 text-purple-600 mx-auto mb-3" />
+              <h4 className="font-semibold text-purple-900 mb-2">Keyword Rankings</h4>
+              <p className="text-sm text-purple-800">See how your target keywords climb the search results</p>
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="grid lg:grid-cols-3 gap-6 mb-8">
+            <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl text-white">
+              <h3 className="text-blue-100">Domain Authority Growth</h3>
+              <p className="text-3xl font-bold">+0 DA</p>
+              <p className="text-blue-100 text-sm mt-2">Tracking starts after delivery</p>
+            </div>
+            <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-2xl text-white">
+              <h3 className="text-green-100">Organic Traffic</h3>
+              <p className="text-3xl font-bold">+0%</p>
+              <p className="text-green-100 text-sm mt-2">Baseline being established</p>
+            </div>
+            <div className="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-2xl text-white">
+              <h3 className="text-purple-100">Keyword Rankings</h3>
+              <p className="text-3xl font-bold">+0</p>
+              <p className="text-purple-100 text-sm mt-2">Monitoring setup in progress</p>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -723,18 +657,10 @@ function FilesTab() {
   const [uploadedFiles, setUploadedFiles] = useState([
     {
       id: '1',
-      name: 'Brand_Guidelines.pdf',
-      size: 2450000,
+      name: 'Welcome_Package.pdf',
+      size: 1250000,
       type: 'application/pdf',
-      uploadDate: '2024-01-15T10:30:00Z',
-      url: '#'
-    },
-    {
-      id: '2',
-      name: 'Content_Brief.docx',
-      size: 456000,
-      type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      uploadDate: '2024-01-20T14:20:00Z',
+      uploadDate: new Date().toISOString(),
       url: '#'
     }
   ]);
@@ -769,29 +695,15 @@ function FilesTab() {
         {/* Available Reports */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Available Reports</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { name: 'Monthly Link Report - January', type: 'PDF', size: '2.4 MB', date: '2024-02-01' },
-              { name: 'Traffic Analysis Report', type: 'PDF', size: '1.8 MB', date: '2024-01-28' },
-              { name: 'Keyword Rankings Update', type: '📊 Excel', size: '456 KB', date: '2024-01-25' },
-              { name: 'Competitor Analysis', type: 'PDF', size: '3.2 MB', date: '2024-01-20' },
-              { name: 'Link Quality Audit', type: 'PDF', size: '1.1 MB', date: '2024-01-15' },
-              { name: 'Campaign Performance Summary', type: 'PDF', size: '890 KB', date: '2024-01-10' }
-            ].map((report, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="text-2xl">📄</div>
-                  <button className="text-blue-600 hover:text-blue-700 transition-colors">
-                    <Download className="h-4 w-4" />
-                  </button>
-                </div>
-                <h4 className="font-medium text-gray-900 mb-2 text-sm">{report.name}</h4>
-                <div className="text-xs text-gray-500 space-y-1">
-                  <div>{report.type} • {report.size}</div>
-                  <div>{report.date}</div>
-                </div>
-              </div>
-            ))}
+          <div className="text-center py-12">
+            <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
+            <h4 className="text-lg font-medium text-gray-900 mb-2">No Reports Available Yet</h4>
+            <p className="text-gray-500 mb-4">Reports will be generated after your campaign is completed.</p>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto">
+              <p className="text-sm text-blue-800">
+                <strong>Coming Soon:</strong> Link delivery reports, traffic analysis, and performance summaries
+              </p>
+            </div>
           </div>
         </div>
       </div>
