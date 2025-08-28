@@ -38,7 +38,7 @@ function Footer() {
               <span className="text-2xl font-bold">HighDALink</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Premium DR90+ editorial backlinks and high-authority link building services. We help businesses dominate search rankings with white-hat SEO strategies, quality content creation, and organic link acquisition from top-tier publications.
+              Premium DR90+ DA90+ editorial backlinks and high-authority link building services. We help businesses dominate search rankings with white-hat SEO strategies, quality content creation, and organic link acquisition from top-tier publications.
             </p>
             <div className="flex space-x-4 mb-6">
               <Star className="h-5 w-5 text-yellow-400" />

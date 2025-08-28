@@ -34,18 +34,21 @@ function Header() {
             <Link 
               to="/why-choose-us" 
               className={`transition-colors ${isActive('/why-choose-us') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
+              aria-label="Learn why HighDALink is the top 1% link building provider"
             >
               Why Choose Us
             </Link>
             <Link 
               to="/pricing" 
               className={`transition-colors ${isActive('/pricing') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
+              aria-label="View pricing for DR90+ editorial backlinks"
             >
               Pricing
             </Link>
             <Link 
               to="/roi-calculator" 
               className={`transition-colors flex items-center ${isActive('/roi-calculator') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
+              aria-label="Calculate ROI from link building campaigns"
             >
               <Calculator className="h-4 w-4 mr-1" />
               ROI Calculator
@@ -53,6 +56,7 @@ function Header() {
             <Link 
               to="/guarantee" 
               className={`transition-colors flex items-center ${isActive('/guarantee') ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
+              aria-label="Learn about our 30-day money-back guarantee"
             >
               <Shield className="h-4 w-4 mr-1" />
               Guarantee
