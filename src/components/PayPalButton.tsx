@@ -224,7 +224,7 @@ interface PayPalProviderProps {
 
 export const PayPalProvider: React.FC<PayPalProviderProps> = ({ children }) => {
   const initialOptions = {
-    clientId: import.meta.env.VITE_REACT_APP_PAYPAL_CLIENT_ID || "AXj_kRWit62OHFkVx4FonS2Jg3jGkU96uNe8WVVwGXulEQefUPD17Dig3l6WaZwo2PGtyh9FiKMgj3XF",
+    clientId: import.meta.env.VITE_REACT_APP_PAYPAL_CLIENT_ID || "ATIWMe4iiGvujoqDUz6Tu9-3eyWB8OmLJmLdFmcRfTgexKyao6d4bP2UbAQ5oNENyKfkZfiOVYrs8OmQ",
     currency: "USD",
     intent: "capture",
     "disable-funding": "card",
