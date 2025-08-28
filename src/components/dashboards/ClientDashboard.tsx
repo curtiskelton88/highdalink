@@ -227,7 +227,7 @@ function DashboardTab() {
       </Modal>
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Welcome Back, {user?.name?.split(' ')[0] || 'Client'}!</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Welcome Back, {user?.name?.split(' ')[0] || 'Valued Client'}!</h1>
         <p className="text-gray-600 mt-2">Here's an overview of your link building campaigns</p>
       </div>
 
