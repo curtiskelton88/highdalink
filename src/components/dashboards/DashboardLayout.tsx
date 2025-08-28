@@ -58,25 +58,25 @@ function DashboardLayout({ children, sidebar, title }: DashboardLayoutProps) {
               </button>
 
               {/* User Profile Section - Always Visible */}
-              <div className="flex items-center space-x-3 bg-gray-50 rounded-xl px-4 py-2 min-w-0">
+              <div className="flex items-center space-x-3 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl px-4 py-3 min-w-0 border border-gray-200 hover:shadow-sm transition-all">
                 <img
                   src={user?.avatar}
                   alt={user?.name}
-                  className="h-10 w-10 rounded-full border-2 border-white shadow-sm flex-shrink-0"
+                  className="h-12 w-12 rounded-full border-3 border-white shadow-md flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold text-gray-900 truncate">{user?.name}</div>
+                  <div className="text-sm font-bold text-gray-900 truncate">{user?.name}</div>
                   <div className={`text-xs px-2 py-1 rounded-full font-medium ${
                     user?.role === 'admin' ? 'bg-purple-100 text-purple-800' :
                     user?.role === 'client' ? 'bg-blue-100 text-blue-800' :
                     'bg-green-100 text-green-800'
                   }`}>
-                    {user?.role?.charAt(0).toUpperCase() + user?.role?.slice(1)}
+                    {user?.role?.charAt(0).toUpperCase() + user?.role?.slice(1)} Portal
                   </div>
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="p-2 text-gray-400 hover:text-red-500 transition-colors flex-shrink-0"
+                  className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all flex-shrink-0"
                   title="Logout"
                 >
                   <LogOut className="h-5 w-5" />
