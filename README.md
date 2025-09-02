@@ -16,5 +16,3 @@ Backlinks from high-authority domains (90+ DA/DR) dramatically improve your webs
 
 ### 🔹 Learn More
 For premium **90+ DA/DR editorial backlinks**, SEO tips, and link-building strategies, visit 👉 [highdalink.com](https://highdalink.com)
-
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/curtiskelton88/highdalink)
