@@ -16,6 +16,7 @@ import MoneyBackGuarantee from './pages/MoneyBackGuarantee';
 import ROICalculator from './pages/ROICalculator';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import PenaltyShieldPrivacyPolicy from './pages/PenaltyShieldPrivacyPolicy';
 import UnifiedLogin from './components/UnifiedLogin';
 import AdminDashboard from './components/dashboards/AdminDashboard';
 import ClientDashboard from './components/dashboards/ClientDashboard';
@@ -145,6 +146,7 @@ function App() {
                     <Route path="/roi-calculator" element={<ROICalculator />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/penalty-shield-privacy-policy" element={<PenaltyShieldPrivacyPolicy />} />
 
                     {/* Authentication Routes */}
                     <Route path="/login" element={

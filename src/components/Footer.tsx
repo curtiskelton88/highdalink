@@ -79,6 +79,7 @@ function Footer() {
               <li><Link to="/why-choose-us" className="hover:text-white transition-colors">Why Choose Us</Link></li>
               <li><Link to="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link to="/penalty-shield-privacy-policy" className="hover:text-white transition-colors">Penalty Shield Privacy</Link></li>
             </ul>
           </div>
         </div>
