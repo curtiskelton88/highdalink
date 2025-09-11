@@ -68,6 +68,7 @@ function Footer() {
               <li><Link to="/pricing" className="hover:text-white transition-colors">SEO Content Writing</Link></li>
               <li><Link to="/pricing" className="hover:text-white transition-colors">Agency Solutions</Link></li>
               <li><Link to="/pricing" className="hover:text-white transition-colors">Monthly Campaigns</Link></li>
+              <li><Link to="/penalty-shield-privacy-policy" className="hover:text-white transition-colors">Penalty Shield Privacy</Link></li>
             </ul>
           </div>
           
