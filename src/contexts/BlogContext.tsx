@@ -654,7 +654,7 @@ Ready to dominate SERPs with professional [link building services](https://curti
   const getPublishedPosts = () => {
     },
     {
-      id: '8',
+      id: 'blog-post-8',
       title: 'Link Building Outreach: The Complete Guide to Earning Editorial Backlinks Through Strategic Email Campaigns',
       slug: 'link-building-outreach-complete-guide-earning-editorial-backlinks-email-campaigns',
       excerpt: 'Master link building outreach with proven email templates, strategies, and frameworks that earn DR90+ editorial backlinks. Complete guide to outreach that actually works.',
