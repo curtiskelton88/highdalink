@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { BlogPost } from '../types';
+import { BlogPost } from '../types';
 
 interface BlogContextType {
   posts: BlogPost[];
